@@ -72,6 +72,14 @@ public:
      * This method is first to be called, and
      * is responsable for triggering all the other methods.
      */
+    void load();
+
+    /**
+     * \brief Initialize the system.
+     * 
+     * This method is first to be called, and
+     * is responsable for triggering all the other methods.
+     */
     void start();
 
     /**

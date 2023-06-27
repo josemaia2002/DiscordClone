@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include "Sistema.h"
 
 using namespace std;
@@ -12,8 +13,65 @@ Sistema::Sistema() {
     this->canalAtual = nullptr;
 }
 
+void Sistema::load() {
+    // createUser(email, senha, nome);
+
+    int file_size = 0;
+
+    fstream arquivo;
+    string text;
+
+    arquivo.open("../data/users.txt",ios::in);
+    while(getline(arquivo, text)){
+        file_size++;
+    }
+    arquivo.close(); 
+
+
+    string lines[file_size];
+    int i = 0;
+       
+    arquivo.open("../data/users.txt",ios::in);
+    if(arquivo.is_open()){   
+        while(getline(arquivo, text)){
+            lines[i] = text;
+            i++;
+        }
+        arquivo.close(); 
+    }
+    arquivo.close();
+
+    string line;
+    string email;
+    string senha;
+    string nome;
+
+    vector<string> testUsers;
+
+     // Leitura de cada linha
+    for(int step = 0; step < file_size; step++){
+        line = lines[step];
+        cout << line << endl;
+        istringstream iss(line);
+        getline(iss, email, ' ');
+        getline(iss, senha, ' ');
+        getline(iss, nome);
+
+        
+        testUsers.push_back(nome);
+    }
+
+    cout << "##########################" << endl;
+
+
+    for(auto& nome : testUsers) {
+        cout << nome << endl;
+    }
+}
+
 void Sistema::start() {
     cout << "Concord Servers Management" << endl;
+
     while(true) 
         if(!readInput())
             break;
