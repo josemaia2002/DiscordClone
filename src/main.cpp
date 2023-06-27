@@ -9,8 +9,7 @@ using namespace std;
 
 int main(){
     Sistema app;
-    app.load();
-    // app.start();
+    app.start();
 
     return 0;
 }

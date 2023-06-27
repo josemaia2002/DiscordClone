@@ -14,8 +14,6 @@ Sistema::Sistema() {
 }
 
 void Sistema::load() {
-    // createUser(email, senha, nome);
-
     int file_size = 0;
 
     fstream arquivo;
@@ -46,31 +44,22 @@ void Sistema::load() {
     string senha;
     string nome;
 
-    vector<string> testUsers;
-
      // Leitura de cada linha
     for(int step = 0; step < file_size; step++){
         line = lines[step];
-        cout << line << endl;
         istringstream iss(line);
         getline(iss, email, ' ');
         getline(iss, senha, ' ');
         getline(iss, nome);
 
-        
-        testUsers.push_back(nome);
-    }
-
-    cout << "##########################" << endl;
-
-
-    for(auto& nome : testUsers) {
-        cout << nome << endl;
+        createUser(email, senha, nome);
     }
 }
 
 void Sistema::start() {
     cout << "Concord Servers Management" << endl;
+
+    load();
 
     while(true) 
         if(!readInput())
