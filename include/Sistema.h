@@ -130,94 +130,111 @@ public:
      */
     void createServer(const string& nome);
 
-
-
-
     /**
-     * \brief Creates a new system.
+     * \brief Changes the server's description.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Receive the server's name and a text to describe it.
+     * 
+     * \param nome The name of the server.
+     * \param descricao The text that will be new description of the server.
      */
     void changeServerDesc(const string& nome, const string& descricao);
 
     /**
-     * \brief Creates a new system.
+     * \brief Changes the server's description.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Receive the server's name and a text to describe it.
+     * 
+     * \param nome The name of the server.
+     * \param codigoConvite The code that will be the new 
+     * invitation code of the server.
      */
     void changeServerCode(const string& nome, const string& codigoConvite);
 
     /**
-     * \brief Creates a new system.
+     * \brief List all the servers of the system.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Traverses the list of servers and displays their names.
+     * 
      */
     void listServers();
 
     /**
-     * \brief Creates a new system.
+     * \brief Remove a server from the system.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Traverses the list untill the desired server is found,
+     * then removes it.
+     * 
+     * \param nome The name of the server to be deleted.
      */
     void removeServer(const string& nome);
 
     /**
-     * \brief Creates a new system.
+     * \brief Control the access to a server.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Receives a server name and invitation code from the 
+     * user, verifies if it is valid, then adds the user to the server.
+     * 
+     * \param nome The name of the server.
+     * \param codigoConvite The invitation code of the server.
      */
     void enterServer(const string& nome, const string& codigoConvite);
 
     /**
-     * \brief Creates a new system.
+     * \brief Method to leave the current server.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * This method verifies if the user is currently logged
+     * and inside a server, then it removes the user from the server .
+     * 
      */
     void leaveServer();
 
-    /** 
-     * \brief Creates a new system.
+    /**
+     * \brief List all the members of the server.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Traverses the list of the system's users and 
+     * displays the names of those whose id is in the 
+     * current server's list of member's ids.
+     * 
      */
     void listMembers();
 
     /**
-     * \brief Creates a new system.
+     * \brief List all the channels of the system.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Traverses the list of the system's channels and 
+     * displays their names.
+     * 
      */
     void listChannels();
 
     /**
-     * \brief Creates a new system.
+     * \brief Creates a new channel.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Creates a channel with name and type specified by the user.
+     * 
+     * \param nome The name of the channel.
+     * \param tipo The channel's type.
      */
     void createChannel(const string& nome, const string& tipo);
 
     /**
-     * \brief Creates a new system.
+     * \brief Control the access to a channel.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * Receives a server name, checks if it exists,
+     * then add the user to the desired channel.
+     * 
+     * \param nome The name of the channel.
      */
     void enterChannel(const string& nome);
 
     /**
-     * \brief Creates a new system.
+     * \brief Method to leave the current channel.
      * 
-     * Creates a new system and sets its
-     * atributes with standard values.
+     * This method verifies if the user is currently logged, 
+     * inside a server and inside a channel, then it 
+     * removes the user from the channel.
+     * 
      */
     void leaveChannel();
 };

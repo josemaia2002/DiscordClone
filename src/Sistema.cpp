@@ -270,10 +270,10 @@ void Sistema::removeServer(const string& nome) {
         return;
     }
 
-    for(auto it = servidores.begin(); it != servidores.end(); ++it) {
-        if(it->getNome() == nome) {
-            if(it->getusuarioDonoId() == usuarioLogado->getId()) {
-                servidores.erase(it);
+    for(auto current_server = servidores.begin(); current_server != servidores.end(); ++current_server) {
+        if(current_server->getNome() == nome) {
+            if(current_server->getusuarioDonoId() == usuarioLogado->getId()) {
+                servidores.erase(current_server);
                 cout << "Server '" << nome << "' removed" << endl;
             } else {
                 cout << "Error - Not allowed." << endl;
