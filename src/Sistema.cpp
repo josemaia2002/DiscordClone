@@ -185,6 +185,24 @@ bool Sistema::readInput() {
     else if(command == "leave-channel") {
         leaveChannel();
     }
+    else if(command == "help") {
+        cout << "quit - Sair do programa" << endl;
+        cout << "create-user [email] [senha] [nome] - Criar um novo usuário" << endl;
+        cout << "login [email] [senha] - Fazer login com um usuário existente" << endl;
+        cout << "disconnect - Desconectar do usuário atual" << endl;
+        cout << "create-server [nome] - Criar um novo servidor" << endl;
+        cout << "set-server-desc [nome] [descrição] - Definir a descrição de um servidor" << endl;
+        cout << "set-server-invite-code [nome] [código] - Definir o código de convite de um servidor" << endl;
+        cout << "list-servers - Listar todos os servidores" << endl;
+        cout << "remove-server [nome] - Remover um servidor" << endl;
+        cout << "enter-server [nome] [código] (Código só quando necessario) - Entrar em um servidor" << endl;
+        cout << "leave-server - Sair do servidor atual" << endl;
+        cout << "list-participants - Listar os participantes do servidor atual" << endl;
+        cout << "list-channels - Listar os canais do servidor atual" << endl;
+        cout << "create-channel [nome] [tipo] - Criar um canal no servidor atual" << endl;
+        cout << "enter-channel [nome] - Entrar em um canal do servidor atual" << endl;
+        cout << "leave-channel - Sair do canal atual" << endl;
+    }
     else {
         cout << "Error! Invalid command." << endl;
     }
