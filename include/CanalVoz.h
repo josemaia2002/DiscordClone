@@ -28,6 +28,9 @@ public:
      * \brief The channel's list of messages.
      * 
      * Represents all the messages of the channel.
+     * 
+     * \param nome The name that's going to be assigned 
+     * to the new voice channel.
      */ 
     CanalVoz(string nome);
 

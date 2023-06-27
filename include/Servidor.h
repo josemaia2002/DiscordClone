@@ -70,15 +70,38 @@ public:
     Servidor();  
 
     /**
-     * \brief Creates a new server.
+     * \brief Creates a new server based on parameters.
      * 
      * Creates a new server and sets its
      * atributes with standard values.
+     * 
+     * \param usuarioDonoId The name that's going to be assigned 
+     * to the new text channel.
+     * \param nome The name that's going to be assigned 
+     * to the new server.
+     * \param descricao A text describing the server.
+     * \param codigoConvite A code required to enter the server.
      */
     Servidor(int usuarioDonoId, const std::string& nome, const std::string& descricao, const std::string& codigoConvite); 
 
+    /**
+     * \brief Add a memeber to the server.
+     * 
+     * Add a member based on the id received from the user.
+     * 
+     * \param id The identification of the user.
+     */
     void adicionarParticipante(int id);
 
+    /**
+     * \brief Add a channel to the server.
+     * 
+     * This methods lets the server admin to add
+     * a channel to the server.
+     * 
+     * \param canal A pointer to the channel
+     * that will be added.
+     */
     void adicionarCanal(Canal* canal); 
 
     int getusuarioDonoId();

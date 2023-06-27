@@ -14,198 +14,209 @@ using namespace std;
 #define SISTEMA_H
 
 /**
- * \brief Represents a message.
+ * \brief Represents the system.
  * 
- * This is a class that represents a message, 
- * specifying the message's time, origin and content.
+ * This is a class that represents the system and 
+ * deals with the user interaction, serving as 
+ * an interface, and integrating all the project.
  */
 class Sistema {
 private:
     /**
-     * \brief The message's time.
+     * \brief The system's users.
      * 
-     * Represents the time of the message.
+     * Represents the list of the system's users.
      */ 
     vector<Usuario> usuarios;
 
     /**
-     * \brief The message's origin.
+     * \brief The system's servers.
      * 
-     * Represents the origin of the message.
+     * Represents the list of the system's servers.
      */ 
     vector<Servidor> servidores;
 
     /**
-     * \brief The message's content.
+     * \brief The currently logged user.
      * 
-     * Represents the content of the message.
+     * Represents the user that is currently logged.
      */ 
     Usuario* usuarioLogado;
 
     /**
-     * \brief The message's origin.
+     * \brief The current server.
      * 
-     * Represents the origin of the message.
+     * Represents the server where the user is.
      */ 
     Servidor* servidorAtual;
 
     /**
-     * \brief The message's content.
+     * \brief The The current channel.
      * 
-     * Represents the content of the message.
+     * Represents the channel where the user is
      */ 
     Canal* canalAtual;
-
-
+    
 public:
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     Sistema();
 
     /**
-     * \brief Creates a new message.
+     * \brief Initialize the system.
      * 
-     * Creates a new message and sets its
-     * atributes with standard values.
+     * This method is first to be called, and
+     * is responsable for triggering all the other methods.
      */
     void start();
 
     /**
-     * \brief Creates a new message.
+     * \brief Process the users's commands.
      * 
-     * Creates a new message and sets its
-     * atributes with standard values.
+     * This method receivers the user's input and proccess it.
      */
     bool readInput();
 
     /**
-     * \brief Creates a new message.
+     * \brief Terminate the program.
      * 
-     * Creates a new message and sets its
-     * atributes with standard values.
+     * This method is called to quit the system.
      */
-    void quit();
+    bool quit();
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new user.
      * 
-     * Creates a new message and sets its
-     * atributes with standard values.
+     * Creates a new user and sets its
+     * atributes with the received values.
+     * 
+     * \param email The email of the user.
+     * \param senha The password of the user.
+     * \param nome The name of the user.
      */
     void createUser(const string& email, const string& senha, const string& nome);
 
     /**
-     * \brief Creates a new message.
+     * \brief Login function.
      * 
-     * Creates a new message and sets its
-     * atributes with standard values.
+     * This method controls the access to the system.
+     * It asks for the user's email and password, and checks
+     * if they exist.
+     * 
+     * \param email The email of the user.
+     * \param senha The password of the user.
      */
     void login(const string& email, const string& senha);
 
     /**
-     * \brief Creates a new message.
+     * \brief Log out from the system.
      * 
-     * Creates a new message and sets its
-     * atributes with standard values.
+     * This method verifies if the user is currently
+     * logged in, then it disconnects the user from the system.
      */
     void disconnect();
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new server.
      * 
-     * Creates a new message and sets its
-     * atributes with standard values.
+     * Creates a new system and sets its
+     * name with the received value.
+     * 
+     * \param nome The name of the new server.
      */
     void createServer(const string& nome);
 
+
+
+
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void changeServerDesc(const string& nome, const string& descricao);
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void changeServerCode(const string& nome, const string& codigoConvite);
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void listServers();
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void removeServer(const string& nome);
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void enterServer(const string& nome, const string& codigoConvite);
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void leaveServer();
 
     /** 
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void listMembers();
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void listChannels();
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void createChannel(const string& nome, const string& tipo);
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void enterChannel(const string& nome);
 
     /**
-     * \brief Creates a new message.
+     * \brief Creates a new system.
      * 
-     * Creates a new message and sets its
+     * Creates a new system and sets its
      * atributes with standard values.
      */
     void leaveChannel();

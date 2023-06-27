@@ -5,11 +5,18 @@
 #include "Sistema.h"
 
 using namespace std;
-Sistema::Sistema() : usuarioLogado(nullptr), servidorAtual(nullptr), canalAtual(nullptr) {}
+
+Sistema::Sistema() {
+    this->usuarioLogado = nullptr;
+    this->servidorAtual = nullptr;
+    this->canalAtual = nullptr;
+}
 
 void Sistema::start() {
     cout << "Concord Servers Management" << endl;
-    while (readInput()) {}
+    while(true) 
+        if(!readInput())
+            break;
 }
 
 bool Sistema::readInput() {
@@ -27,8 +34,7 @@ bool Sistema::readInput() {
 
 
     if(command == "quit") {
-        cout << "Leaving Concord" << endl;
-        return false;
+        return quit();
     }
     else if(command == "create-user") {
         string email;
@@ -133,18 +139,18 @@ bool Sistema::readInput() {
         leaveChannel();
     }
     else {
-        cout << "Error! Invalid warning." << endl;
+        cout << "Error! Invalid command." << endl;
     }
 
     return true;
 }
 
-void Sistema::quit() {
-    cout << "Quitting the system. Goodbye!" << endl;
+bool Sistema::quit() {
+    cout << "Leaving the system" << endl;
+    return false;
 }
 
 void Sistema::createUser(const string& email, const string& senha, const string& nome) {
-    // Verificar se o email já existe no cadastro geral
     for(auto& usuario : usuarios) {
         if(usuario.getEmail() == email) {
             cout << "Error: Already used email." << endl;
@@ -152,10 +158,8 @@ void Sistema::createUser(const string& email, const string& senha, const string&
         }
     }
 
-    // Gerar ID para o novo usuário
     int novoId = usuarios.size() + 1;
 
-    // Criar o novo usuário e adicioná-lo ao cadastro geral
     Usuario novoUsuario(novoId, nome, email, senha);
     usuarios.push_back(novoUsuario);
 
@@ -164,15 +168,13 @@ void Sistema::createUser(const string& email, const string& senha, const string&
 }
 
 void Sistema::login(const string& email, const string& senha) {
-    // Verificar se o usuário já está logado
     if(usuarioLogado != nullptr) {
         cout << "Error - Already logged." << endl;
         return;
     }
 
-    // Procurar o usuário no cadastro geral
     for(auto& usuario : usuarios) {
-        if(usuario.getEmail() == email || usuario.getSenha() == senha) {
+        if(usuario.getEmail() == email && usuario.getSenha() == senha) {
             usuarioLogado = &usuario;
             cout << "Successfull login." << endl;
             return;
@@ -352,16 +354,16 @@ void Sistema::listChannels() {
         return;
     }
 
-    cout << "#canais de texto" << endl;
+    cout << "Voice channels" << endl;
     for(const auto& canal : servidorAtual->getCanais()) {
-        if(dynamic_cast<const CanalTexto*>(canal) != nullptr) {
+        if(dynamic_cast<const CanalVoz*>(canal) != nullptr) {
             cout << canal->getNome() << endl;
         }
     }
 
-    cout << "#canais de voz" << endl;
+    cout << "Text channels" << endl;
     for(const auto& canal : servidorAtual->getCanais()) {
-        if(dynamic_cast<const CanalVoz*>(canal) != nullptr) {
+        if(dynamic_cast<const CanalTexto*>(canal) != nullptr) {
             cout << canal->getNome() << endl;
         }
     }
