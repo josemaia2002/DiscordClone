@@ -87,7 +87,7 @@ public:
      * 
      * This method access a file and get its content.
      */
-    void accessFile(string fileName);
+    vector<string> accessFile(string fileName);
 
     /**
      * \brief Process the users's commands.

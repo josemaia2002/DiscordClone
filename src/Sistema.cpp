@@ -24,39 +24,17 @@ void Sistema::start() {
 }
 
 void Sistema::load() {
-    int file_size = 0;
-
-    fstream arquivo;
-    string text;
-
-    arquivo.open("../data/users.txt",ios::in);
-    while(getline(arquivo, text)){
-        file_size++;
-    }
-    arquivo.close(); 
-
-
-    string lines[file_size];
-    int i = 0;
-       
-    arquivo.open("../data/users.txt",ios::in);
-    if(arquivo.is_open()){   
-        while(getline(arquivo, text)){
-            lines[i] = text;
-            i++;
-        }
-        arquivo.close(); 
-    }
-    arquivo.close();
-
+    vector<string> lines;
     string line;
     string email;
     string senha;
     string nome;
 
+    lines = accessFile("../data/users.txt");
+
      // Leitura de cada linha
-    for(int step = 0; step < file_size; step++){
-        line = lines[step];
+    for(int i = 0; i < lines.size(); i++){
+        line = lines.at(i);
         istringstream iss(line);
         getline(iss, email, ' ');
         getline(iss, senha, ' ');
@@ -66,50 +44,20 @@ void Sistema::load() {
     }
 }
 
-void Sistema::accessFile(string fileName) {
-    int file_size = 0;
-
+vector<string> Sistema::accessFile(string fileName) {
     fstream arquivo;
     string text;
+    vector<string> lines;
 
-    arquivo.open(fileName,ios::in);
-    while(getline(arquivo, text)){
-        file_size++;
-    }
-    arquivo.close(); 
-
-
-    string lines[file_size];
-    int i = 0;
-       
     arquivo.open(fileName,ios::in);
     if(arquivo.is_open()){   
         while(getline(arquivo, text)){
-            lines[i] = text;
-            i++;
+            lines.push_back(text);
         }
         arquivo.close(); 
     }
-    arquivo.close();
 
-    string line;
-    string email;
-    string senha;
-    string nome;
-
-     // Leitura de cada linha
-    for(int step = 0; step < file_size; step++){
-        line = lines[step];
-        istringstream iss(line);
-        getline(iss, email, ' ');
-        getline(iss, senha, ' ');
-        getline(iss, nome);
-
-        cout << email << endl;
-        cout << senha << endl;
-        cout << nome << endl;
-    }
-   
+    return lines;
 }
 
 bool Sistema::readInput() {
