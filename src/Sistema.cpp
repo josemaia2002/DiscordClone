@@ -24,6 +24,10 @@ void Sistema::start() {
 }
 
 void Sistema::load() {
+    loadUser();
+}
+
+void Sistema::loadUser() {
     vector<string> lines;
     string line;
     string email;
@@ -31,6 +35,27 @@ void Sistema::load() {
     string nome;
 
     lines = accessFile("../data/users.txt");
+
+     // Leitura de cada linha
+    for(int i = 0; i < lines.size(); i++){
+        line = lines.at(i);
+        istringstream iss(line);
+        getline(iss, email, ' ');
+        getline(iss, senha, ' ');
+        getline(iss, nome);
+
+        createUser(email, senha, nome);
+    }
+}
+
+void Sistema::loadServer() {
+    vector<string> lines;
+    string line;
+    string nome;
+    string descricao;
+    string codigo;
+
+    lines = accessFile("../data/servers.txt");
 
      // Leitura de cada linha
     for(int i = 0; i < lines.size(); i++){
