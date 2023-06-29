@@ -72,15 +72,22 @@ public:
      * This method is first to be called, and
      * is responsable for triggering all the other methods.
      */
+    void start();
+
+    /**
+     * \brief Load the data.
+     * 
+     * This method is responsible for loading
+     * the initial data of the system.
+     */
     void load();
 
     /**
-     * \brief Initialize the system.
+     * \brief Get the data from a file.
      * 
-     * This method is first to be called, and
-     * is responsable for triggering all the other methods.
+     * This method access a file and get its content.
      */
-    void start();
+    void accessFile(string fileName);
 
     /**
      * \brief Process the users's commands.

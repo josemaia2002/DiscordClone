@@ -13,6 +13,16 @@ Sistema::Sistema() {
     this->canalAtual = nullptr;
 }
 
+void Sistema::start() {
+    cout << "Concord Servers Management" << endl;
+
+    load();
+
+    while(true) 
+        if(!readInput())
+            break;
+}
+
 void Sistema::load() {
     int file_size = 0;
 
@@ -56,14 +66,50 @@ void Sistema::load() {
     }
 }
 
-void Sistema::start() {
-    cout << "Concord Servers Management" << endl;
+void Sistema::accessFile(string fileName) {
+    int file_size = 0;
 
-    load();
+    fstream arquivo;
+    string text;
 
-    while(true) 
-        if(!readInput())
-            break;
+    arquivo.open(fileName,ios::in);
+    while(getline(arquivo, text)){
+        file_size++;
+    }
+    arquivo.close(); 
+
+
+    string lines[file_size];
+    int i = 0;
+       
+    arquivo.open(fileName,ios::in);
+    if(arquivo.is_open()){   
+        while(getline(arquivo, text)){
+            lines[i] = text;
+            i++;
+        }
+        arquivo.close(); 
+    }
+    arquivo.close();
+
+    string line;
+    string email;
+    string senha;
+    string nome;
+
+     // Leitura de cada linha
+    for(int step = 0; step < file_size; step++){
+        line = lines[step];
+        istringstream iss(line);
+        getline(iss, email, ' ');
+        getline(iss, senha, ' ');
+        getline(iss, nome);
+
+        cout << email << endl;
+        cout << senha << endl;
+        cout << nome << endl;
+    }
+   
 }
 
 bool Sistema::readInput() {

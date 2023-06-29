@@ -9,7 +9,10 @@ using namespace std;
 
 int main(){
     Sistema app;
-    app.start();
+    // app.start();
+
+    app.accessFile("../data/servers.txt");
+
 
     return 0;
 }
