@@ -1,5 +1,0 @@
-create-user email1 password1 name1
-create-user email2 password2 name2
-create-user email3 password3 name3
-login email1 password1
-quit
