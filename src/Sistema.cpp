@@ -16,15 +16,18 @@ Sistema::Sistema() {
 void Sistema::start() {
     cout << "Concord Servers Management" << endl;
 
-    load();
+    // load();
 
     while(true) 
         if(!readInput())
             break;
 }
 
+/*
+
 void Sistema::load() {
     loadUser();
+    loadServer()
 }
 
 void Sistema::loadUser() {
@@ -84,6 +87,8 @@ vector<string> Sistema::accessFile(string fileName) {
 
     return lines;
 }
+
+*/
 
 bool Sistema::readInput() {
     cout << endl << "Enter a command: ";
@@ -204,23 +209,33 @@ bool Sistema::readInput() {
     else if(command == "leave-channel") {
         leaveChannel();
     }
+    else if (command == "send-message") {
+        string mensagem;
+
+        istringstream iss(args);
+        getline(iss, mensagem);
+        sendMessage(mensagem);
+    }
+    else if (command == "list-messages") {
+        listMessages();
+    }
     else if(command == "help") {
-        cout << "quit - Sair do programa" << endl;
-        cout << "create-user [email] [senha] [nome] - Criar um novo usuário" << endl;
-        cout << "login [email] [senha] - Fazer login com um usuário existente" << endl;
-        cout << "disconnect - Desconectar do usuário atual" << endl;
-        cout << "create-server [nome] - Criar um novo servidor" << endl;
-        cout << "set-server-desc [nome] [descrição] - Definir a descrição de um servidor" << endl;
-        cout << "set-server-invite-code [nome] [código] - Definir o código de convite de um servidor" << endl;
-        cout << "list-servers - Listar todos os servidores" << endl;
-        cout << "remove-server [nome] - Remover um servidor" << endl;
-        cout << "enter-server [nome] [código] (Código só quando necessario) - Entrar em um servidor" << endl;
-        cout << "leave-server - Sair do servidor atual" << endl;
-        cout << "list-participants - Listar os participantes do servidor atual" << endl;
-        cout << "list-channels - Listar os canais do servidor atual" << endl;
-        cout << "create-channel [nome] [tipo] - Criar um canal no servidor atual" << endl;
-        cout << "enter-channel [nome] - Entrar em um canal do servidor atual" << endl;
-        cout << "leave-channel - Sair do canal atual" << endl;
+        cout << "quit - Leave the system" << endl;
+        cout << "create-user [email] [password] [name] - Create a new user" << endl;
+        cout << "login [email] [password] - Log in the system" << endl;
+        cout << "disconnect - Disconnect the current user" << endl;
+        cout << "create-server [name] - Create a new server" << endl;
+        cout << "set-server-desc [name] [descrição] - Define the server's description" << endl;
+        cout << "set-server-invite-code [name] [code] - Define the server's invitation code" << endl;
+        cout << "list-servers - List all servers" << endl;
+        cout << "remove-server [name] - Remove a server" << endl;
+        cout << "enter-server [name] [code] - Enter in a server" << endl;
+        cout << "leave-server - Leave the current server" << endl;
+        cout << "list-participants - List all the server's participants" << endl;
+        cout << "list-channels - Listar the server's channels" << endl;
+        cout << "create-channel [name] [type] - Create a chanel in the current server" << endl;
+        cout << "enter-channel [name] - Enter in a channel of the current server" << endl;
+        cout << "leave-channel - Leave the current channel" << endl;
     }
     else {
         cout << "Error! Invalid command." << endl;
@@ -524,4 +539,81 @@ void Sistema::leaveChannel() {
 
     cout << "Leaving channel" << endl;
     canalAtual = nullptr;
+}
+
+void Sistema::sendMessage(const string& mensagem) {
+    if(usuarioLogado == nullptr) {
+        cout << "Error - Not logged." << endl;
+        return;
+    }
+
+    if(servidorAtual == nullptr) {
+        cout << "Error - Not inside a server." << endl;
+        return;
+    }
+
+    if(canalAtual == nullptr) {
+        cout << "Error - Not inside a channel." << endl;
+        return;
+    }
+    CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canalAtual);
+    if(canalTexto == nullptr) {
+        cout << "Error - Not a text channel." << endl;
+        return;
+    }
+
+    Mensagem novaMensagem;
+    novaMensagem.setConteudo(mensagem);
+    novaMensagem.setdataHora(time(nullptr));
+    novaMensagem.setenviadaPor(usuarioLogado->getId());
+
+    canalTexto->adicionarMensagem(novaMensagem);
+}
+
+void Sistema::listMessages() {
+    if(usuarioLogado == nullptr) {
+        cout << "Error - Not logged." << endl;
+        return;
+    }
+
+    if(servidorAtual == nullptr) {
+        cout << "Error - Not inside a server." << std::endl;
+        return;
+    }
+
+
+    if(canalAtual == nullptr) {
+        cout << "Error - Not inside a channel." << std::endl;
+        return;
+    }
+
+    CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canalAtual);
+    if(canalTexto == nullptr) {
+        cout << "Error - Not a text channel." << endl;
+        return;
+    }
+
+    vector<Mensagem>& mensagens = canalTexto->getMensagens();
+    if(mensagens.empty()) {
+        cout << "Error - No messages found." << endl;
+        return;
+    }
+
+    for(Mensagem& mensagem : mensagens) {
+        string nomeUsuario = getNomeUsuario(mensagem.getenviadaPor());
+
+        time_t dataHora = mensagem.getdataHora();
+        char bufferDataHora[20];
+        strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&dataHora));
+
+        cout << nomeUsuario << "<" << bufferDataHora << ">: " << mensagem.getConteudo() << endl;
+    }
+}
+
+string Sistema::getNomeUsuario(int id) {
+    for(Usuario& usuario : usuarios)
+        if(usuario.getId() == id)
+            return usuario.getNome();
+
+    return "";
 }

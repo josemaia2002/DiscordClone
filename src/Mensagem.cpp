@@ -5,12 +5,11 @@
 using namespace std;
 
 Mensagem::Mensagem() {
-    this->dataHora = " ";
     this->enviadaPor = 0;
     this->conteudo = " ";
 }
 
-Mensagem::Mensagem(string dataHora, int enviadaPor, string conteudo) {
+Mensagem::Mensagem(time_t dataHora, int enviadaPor, string conteudo) {
     this->dataHora = dataHora;
     this->enviadaPor = enviadaPor;
     this->conteudo = conteudo;
@@ -21,11 +20,11 @@ ostream &operator<<( ostream &output, const Mensagem &M ) {
     return output;            
 }
 
-string Mensagem::getdataHora() {
+time_t Mensagem::getdataHora() {
     return this->dataHora;
 }
 
-void Mensagem::setdataHora(string dataHora) {
+void Mensagem::setdataHora(time_t dataHora) {
     this->dataHora = dataHora;
 }
 

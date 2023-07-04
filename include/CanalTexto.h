@@ -26,14 +26,29 @@ private:
 
 public:
     /**
-     * \brief The channel's list of messages.
+     * \brief Creates a new text channel.
      * 
-     * Represents all the messages of the channel.
+     * Creates a text channel and set its name with 
+     * the value received as a parameter.
      * 
      * \param nome The name that's going to be assigned 
      * to the new text channel.
      */ 
     CanalTexto(string nome);
+
+    /**
+     * \brief Add a message to the channel.
+     * 
+     * Receives a message as a parameter and adds
+     * it to the channel's list of messages.
+     * 
+     * \param mensagem The message that's going to be added 
+     * to the text channel.
+     */ 
+    void adicionarMensagem(const Mensagem& mensagem);
+
+    vector<Mensagem>& getMensagens();
+
 };
 
 #endif

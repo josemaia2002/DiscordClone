@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ private:
      * 
      * Represents the time of the message.
      */ 
-    string dataHora;
+    time_t dataHora;
 
     /**
      * \brief The message's origin.
@@ -54,12 +55,12 @@ public:
      * \param enviadaPor The message's origin.
      * \param conteudo The message's content.
      */
-    Mensagem(string dataHora, int enviadaPor, string conteudo);    
+    Mensagem(time_t dataHora, int enviadaPor, string conteudo);    
 
     friend ostream &operator<<(ostream &output, const Mensagem &M);
 
-    string getdataHora();
-    void setdataHora(string dataHora);
+    time_t getdataHora();
+    void setdataHora(time_t dataHora);
 
     int getenviadaPor();
     void setenviadaPor(int enviadaPor);

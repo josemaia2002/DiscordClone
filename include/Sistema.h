@@ -252,6 +252,28 @@ public:
      * 
      */
     void leaveChannel();
+
+    /**
+     * \brief Method to send a message to the current channel.
+     * 
+     * This method verifies if the user is currently logged, 
+     * inside a server and inside a channel, then it 
+     * send to the channel the message defined by the user.
+     * 
+     */
+    void sendMessage(const string& mensagem);
+
+    /**
+     * \brief Method to list the channel's messages.
+     * 
+     * This method verifies if the user is currently logged, 
+     * inside a server and inside a channel, then it
+     * list all the messages sent to the channel.
+     * 
+     */
+    void listMessages();
+
+    string getNomeUsuario(int id); 
 };
 
 #endif
