@@ -1,0 +1,114 @@
+\doxysection{Canal\+Texto Class Reference}
+\hypertarget{classCanalTexto}{}\label{classCanalTexto}\index{CanalTexto@{CanalTexto}}
+
+
+Represents a text channel.  
+
+
+
+
+{\ttfamily \#include $<$Canal\+Texto.\+h$>$}
+
+Inheritance diagram for Canal\+Texto\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCanalTexto}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCanalTexto_a552bec4059eb4e28b8e18413521acc8b}{Canal\+Texto}} (string \mbox{\hyperlink{classCanal_afd954cccffc652f0e59007c805a5467c}{nome}})
+\begin{DoxyCompactList}\small\item\em Creates a new text channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCanalTexto_a496a4b95887930ba88b099c7cd6cbb66}{adicionar\+Mensagem}} (const \mbox{\hyperlink{classMensagem}{Mensagem}} \&mensagem)
+\begin{DoxyCompactList}\small\item\em Add a message to the channel. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classMensagem}{Mensagem}} $>$ \& \mbox{\hyperlink{classCanalTexto_a3460c21a15dae1c5dc0407c5edf7cb2d}{get\+Mensagens}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCanal}{Canal}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCanal_a903e160b4b73d3339ca9b60ebcd2aa95}{Canal}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new user. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCanal_a1d594c155598889751e87bde39a7404e}{Canal}} (string \mbox{\hyperlink{classCanal_afd954cccffc652f0e59007c805a5467c}{nome}})
+\begin{DoxyCompactList}\small\item\em Creates a new channel with the specifieds values. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCanal_a04ed845ff5fea38f4e5e5e63ab3858e3}{get\+Nome}} ()
+\item 
+void \mbox{\hyperlink{classCanal_a0ebd41538e722d962c1fd4eca907e0bd}{set\+Nome}} (string \mbox{\hyperlink{classCanal_afd954cccffc652f0e59007c805a5467c}{nome}})
+\item 
+virtual \mbox{\hyperlink{classCanal_a2b088dd718971a4ee2bc1286f945a8d9}{\texorpdfstring{$\sim$}{\string~}\+Canal}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{classMensagem}{Mensagem}} $>$ \mbox{\hyperlink{classCanalTexto_a429ad705000684d6d4d26534956b5f3e}{mensagens}}
+\begin{DoxyCompactList}\small\item\em The channel\textquotesingle{}s list of messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a text channel. 
+
+This is a class that represents a text channel, listing all its messages. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCanalTexto_a552bec4059eb4e28b8e18413521acc8b}\label{classCanalTexto_a552bec4059eb4e28b8e18413521acc8b} 
+\index{CanalTexto@{CanalTexto}!CanalTexto@{CanalTexto}}
+\index{CanalTexto@{CanalTexto}!CanalTexto@{CanalTexto}}
+\doxysubsubsection{\texorpdfstring{CanalTexto()}{CanalTexto()}}
+{\footnotesize\ttfamily Canal\+Texto\+::\+Canal\+Texto (\begin{DoxyParamCaption}\item[{string}]{nome }\end{DoxyParamCaption})}
+
+
+
+Creates a new text channel. 
+
+Creates a text channel and set its name with the value received as a parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & The name that\textquotesingle{}s going to be assigned to the new text channel. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCanalTexto_a496a4b95887930ba88b099c7cd6cbb66}\label{classCanalTexto_a496a4b95887930ba88b099c7cd6cbb66} 
+\index{CanalTexto@{CanalTexto}!adicionarMensagem@{adicionarMensagem}}
+\index{adicionarMensagem@{adicionarMensagem}!CanalTexto@{CanalTexto}}
+\doxysubsubsection{\texorpdfstring{adicionarMensagem()}{adicionarMensagem()}}
+{\footnotesize\ttfamily void Canal\+Texto\+::adicionar\+Mensagem (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMensagem}{Mensagem}} \&}]{mensagem }\end{DoxyParamCaption})}
+
+
+
+Add a message to the channel. 
+
+Receives a message as a parameter and adds it to the channel\textquotesingle{}s list of messages.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mensagem} & The message that\textquotesingle{}s going to be added to the text channel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCanalTexto_a3460c21a15dae1c5dc0407c5edf7cb2d}\label{classCanalTexto_a3460c21a15dae1c5dc0407c5edf7cb2d} 
+\index{CanalTexto@{CanalTexto}!getMensagens@{getMensagens}}
+\index{getMensagens@{getMensagens}!CanalTexto@{CanalTexto}}
+\doxysubsubsection{\texorpdfstring{getMensagens()}{getMensagens()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classMensagem}{Mensagem}} $>$ \& Canal\+Texto\+::get\+Mensagens (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCanalTexto_a429ad705000684d6d4d26534956b5f3e}\label{classCanalTexto_a429ad705000684d6d4d26534956b5f3e} 
+\index{CanalTexto@{CanalTexto}!mensagens@{mensagens}}
+\index{mensagens@{mensagens}!CanalTexto@{CanalTexto}}
+\doxysubsubsection{\texorpdfstring{mensagens}{mensagens}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classMensagem}{Mensagem}}$>$ Canal\+Texto\+::mensagens\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The channel\textquotesingle{}s list of messages. 
+
+Represents all the messages of the channel. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{CanalTexto_8h}{Canal\+Texto.\+h}}\item 
+src/\mbox{\hyperlink{CanalTexto_8cpp}{Canal\+Texto.\+cpp}}\end{DoxyCompactItemize}

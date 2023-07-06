@@ -1,0 +1,4 @@
+create-user maianeto2014@gmail.com Grapete2023! Jose
+create-user loremdbr@gmail.com Lori2658 Lorena
+create-user joaoarthurob@gmail.com 51190602 Joao
+quit

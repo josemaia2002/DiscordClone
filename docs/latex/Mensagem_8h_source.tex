@@ -1,0 +1,41 @@
+\doxysection{Mensagem.\+h}
+\hypertarget{Mensagem_8h_source}{}\label{Mensagem_8h_source}\index{include/Mensagem.h@{include/Mensagem.h}}
+\mbox{\hyperlink{Mensagem_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ MENSAGEM\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MENSAGEM\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMensagem}{Mensagem}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ time\_t\ \mbox{\hyperlink{classMensagem_aeb7d5ef75423b2094be7d2a621f0309a}{dataHora}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMensagem_a0a45f35c79602ab6d735da42fe2ca3d9}{enviadaPor}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classMensagem_a5dfd53962d097abc59c82a4cdd24e91c}{conteudo}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classMensagem_ae8d4413de4a085a5b93ee3bd1779abdf}{Mensagem}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classMensagem_ae8d4413de4a085a5b93ee3bd1779abdf}{Mensagem}}(time\_t\ \mbox{\hyperlink{classMensagem_aeb7d5ef75423b2094be7d2a621f0309a}{dataHora}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMensagem_a0a45f35c79602ab6d735da42fe2ca3d9}{enviadaPor}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classMensagem_a5dfd53962d097abc59c82a4cdd24e91c}{conteudo}});\ \ \ \ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{friend}\ ostream\ \&\mbox{\hyperlink{classMensagem_af28f8a9b3b277600004fb53da1e240ca}{operator<<}}(ostream\ \&output,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMensagem}{Mensagem}}\ \&M);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ time\_t\ \mbox{\hyperlink{classMensagem_a9b95f6a44530354f8b5d7b6b320140be}{getdataHora}}();}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMensagem_a4ba3637c61565c62e636f9ee57ae1f5b}{setdataHora}}(time\_t\ \mbox{\hyperlink{classMensagem_aeb7d5ef75423b2094be7d2a621f0309a}{dataHora}});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMensagem_a075c87ba23d32f1f9be2e957d0d7826e}{getenviadaPor}}();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMensagem_a6477a3b628021c1b4fd98a87cea97efe}{setenviadaPor}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMensagem_a0a45f35c79602ab6d735da42fe2ca3d9}{enviadaPor}});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classMensagem_a2145978835129b9923828772dac48e3b}{getConteudo}}();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMensagem_a0879d8a79f00921b18b8692ef87789eb}{setConteudo}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{classMensagem_a5dfd53962d097abc59c82a4cdd24e91c}{conteudo}});}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

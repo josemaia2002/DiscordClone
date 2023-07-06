@@ -16,79 +16,41 @@ Sistema::Sistema() {
 void Sistema::start() {
     cout << "Concord Servers Management" << endl;
 
-    // load();
-
     while(true) 
         if(!readInput())
             break;
 }
 
-/*
+// id, nome, email, senha
 
-void Sistema::load() {
-    loadUser();
-    loadServer()
-}
-
-void Sistema::loadUser() {
-    vector<string> lines;
-    string line;
-    string email;
-    string senha;
-    string nome;
-
-    lines = accessFile("../data/users.txt");
-
-     // Leitura de cada linha
-    for(int i = 0; i < lines.size(); i++){
-        line = lines.at(i);
-        istringstream iss(line);
-        getline(iss, email, ' ');
-        getline(iss, senha, ' ');
-        getline(iss, nome);
-
-        createUser(email, senha, nome);
-    }
-}
-
-void Sistema::loadServer() {
-    vector<string> lines;
-    string line;
-    string nome;
-    string descricao;
-    string codigo;
-
-    lines = accessFile("../data/servers.txt");
-
-     // Leitura de cada linha
-    for(int i = 0; i < lines.size(); i++){
-        line = lines.at(i);
-        istringstream iss(line);
-        getline(iss, email, ' ');
-        getline(iss, senha, ' ');
-        getline(iss, nome);
-
-        createUser(email, senha, nome);
-    }
-}
-
-vector<string> Sistema::accessFile(string fileName) {
+void Sistema::saveUsers() {
     fstream arquivo;
-    string text;
-    vector<string> lines;
+    
+    arquivo.open("../data/users.txt", ios::app);
+    arquivo << usuarios.size() << endl;
 
-    arquivo.open(fileName,ios::in);
-    if(arquivo.is_open()){   
-        while(getline(arquivo, text)){
-            lines.push_back(text);
-        }
-        arquivo.close(); 
+    for(auto& usuario : usuarios) {
+        arquivo << usuario.getId() << endl;
+        arquivo << usuario.getNome() << endl;
+        arquivo << usuario.getEmail() << endl;
+        arquivo << usuario.getSenha() << endl;
     }
 
-    return lines;
+    arquivo.close();
 }
 
-*/
+void Sistema::saveServers() {
+    fstream arquivo;
+    
+    arquivo.open("../data/servers.txt", ios::app);
+    arquivo << "HelloServer";
+    arquivo.close();
+}
+
+void Sistema::save() {
+    saveUsers();
+    saveServers();
+}
 
 bool Sistema::readInput() {
     cout << endl << "Enter a command: ";

@@ -1,0 +1,99 @@
+\doxysection{Canal\+Voz Class Reference}
+\hypertarget{classCanalVoz}{}\label{classCanalVoz}\index{CanalVoz@{CanalVoz}}
+
+
+Represents a voice channel.  
+
+
+
+
+{\ttfamily \#include $<$Canal\+Voz.\+h$>$}
+
+Inheritance diagram for Canal\+Voz\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCanalVoz}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCanalVoz_a908b3e2d8e99a8f656404e17b51054dc}{Canal\+Voz}} (string \mbox{\hyperlink{classCanal_afd954cccffc652f0e59007c805a5467c}{nome}})
+\begin{DoxyCompactList}\small\item\em The channel\textquotesingle{}s list of messages. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMensagem}{Mensagem}} \mbox{\hyperlink{classCanalVoz_a1a94f349f3930899c7187afb85e31e04}{getultima\+Mensagem}} ()
+\begin{DoxyCompactList}\small\item\em The channel\textquotesingle{}s list of messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCanal}{Canal}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCanal_a903e160b4b73d3339ca9b60ebcd2aa95}{Canal}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new user. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCanal_a1d594c155598889751e87bde39a7404e}{Canal}} (string \mbox{\hyperlink{classCanal_afd954cccffc652f0e59007c805a5467c}{nome}})
+\begin{DoxyCompactList}\small\item\em Creates a new channel with the specifieds values. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCanal_a04ed845ff5fea38f4e5e5e63ab3858e3}{get\+Nome}} ()
+\item 
+void \mbox{\hyperlink{classCanal_a0ebd41538e722d962c1fd4eca907e0bd}{set\+Nome}} (string \mbox{\hyperlink{classCanal_afd954cccffc652f0e59007c805a5467c}{nome}})
+\item 
+virtual \mbox{\hyperlink{classCanal_a2b088dd718971a4ee2bc1286f945a8d9}{\texorpdfstring{$\sim$}{\string~}\+Canal}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMensagem}{Mensagem}} \mbox{\hyperlink{classCanalVoz_a5980806ae2e2360d98c2ef9539a0a8f1}{ultima\+Mensagem}}
+\begin{DoxyCompactList}\small\item\em The channel\textquotesingle{}s last message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a voice channel. 
+
+This is a class that represents a voice channel, listing the last message. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCanalVoz_a908b3e2d8e99a8f656404e17b51054dc}\label{classCanalVoz_a908b3e2d8e99a8f656404e17b51054dc} 
+\index{CanalVoz@{CanalVoz}!CanalVoz@{CanalVoz}}
+\index{CanalVoz@{CanalVoz}!CanalVoz@{CanalVoz}}
+\doxysubsubsection{\texorpdfstring{CanalVoz()}{CanalVoz()}}
+{\footnotesize\ttfamily Canal\+Voz\+::\+Canal\+Voz (\begin{DoxyParamCaption}\item[{string}]{nome }\end{DoxyParamCaption})}
+
+
+
+The channel\textquotesingle{}s list of messages. 
+
+Represents all the messages of the channel.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & The name that\textquotesingle{}s going to be assigned to the new voice channel. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCanalVoz_a1a94f349f3930899c7187afb85e31e04}\label{classCanalVoz_a1a94f349f3930899c7187afb85e31e04} 
+\index{CanalVoz@{CanalVoz}!getultimaMensagem@{getultimaMensagem}}
+\index{getultimaMensagem@{getultimaMensagem}!CanalVoz@{CanalVoz}}
+\doxysubsubsection{\texorpdfstring{getultimaMensagem()}{getultimaMensagem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMensagem}{Mensagem}} Canal\+Voz\+::getultima\+Mensagem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The channel\textquotesingle{}s list of messages. 
+
+Represents all the messages of the channel. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCanalVoz_a5980806ae2e2360d98c2ef9539a0a8f1}\label{classCanalVoz_a5980806ae2e2360d98c2ef9539a0a8f1} 
+\index{CanalVoz@{CanalVoz}!ultimaMensagem@{ultimaMensagem}}
+\index{ultimaMensagem@{ultimaMensagem}!CanalVoz@{CanalVoz}}
+\doxysubsubsection{\texorpdfstring{ultimaMensagem}{ultimaMensagem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMensagem}{Mensagem}} Canal\+Voz\+::ultima\+Mensagem\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The channel\textquotesingle{}s last message. 
+
+Represents the last message of the channel. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{CanalVoz_8h}{Canal\+Voz.\+h}}\item 
+src/\mbox{\hyperlink{CanalVoz_8cpp}{Canal\+Voz.\+cpp}}\end{DoxyCompactItemize}

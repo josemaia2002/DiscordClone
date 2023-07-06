@@ -56,6 +56,20 @@ private:
      * Represents the channel where the user is
      */ 
     Canal* canalAtual;
+
+    /**
+     * \brief The The current channel.
+     * 
+     * Represents the channel where the user is
+     */
+    void saveUsers();
+
+    /**
+     * \brief The The current channel.
+     * 
+     * Represents the channel where the user is
+     */
+    void saveServers();
     
 public:
     /**
@@ -75,19 +89,11 @@ public:
     void start();
 
     /**
-     * \brief Load the data.
+     * \brief The The current channel.
      * 
-     * This method is responsible for loading
-     * the initial data of the system.
+     * Represents the channel where the user is
      */
-    void load();
-
-    /**
-     * \brief Get the data from a file.
-     * 
-     * This method access a file and get its content.
-     */
-    vector<string> accessFile(string fileName);
+    void save();
 
     /**
      * \brief Process the users's commands.
