@@ -1,4 +1,36 @@
 create-user maianeto2014@gmail.com Grapete2023! Jose
 create-user loremdbr@gmail.com Lori2658 Lorena
 create-user joaoarthurob@gmail.com 51190602 Joao
+login maianeto2014@gmail.com Grapete2023!
+create-server RPG
+set-server-desc RPG Servidor para jogar e discutir sobre rpg
+set-server-invite-code RPG Mellon
+disconnect
+login loremdbr@gmail.com Lori2658
+enter-server RPG Mellon
+disconnect
+login maianeto2014@gmail.com Grapete2023!
+enter-server RPG Mellon
+disconnect
+login joaoarthurob@gmail.com 51190602
+enter-server RPG Mellon
+create-channel DarkSun texto
+create-channel ForgottenRealms texto
+create-channel GreyHawk texto
+enter-channel GreyHawk
+send-message Bora jogar!
+disconnect
+login maianeto2014@gmail.com Grapete2023!
+enter-channel GreyHawk
+send-message Vou já entrar.
+send-message To só me ajeitando.
+disconnect
+login loremdbr@gmail.com Lori2658
+enter-channel GreyHawk
+send-message Eu tambem.
+send-message Me esperem.
+disconnect
+login maianeto2014@gmail.com Grapete2023!
+enter-channel DarkSun
+send-message Aventuras no deserto.
 quit

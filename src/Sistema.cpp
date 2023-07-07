@@ -21,8 +21,6 @@ void Sistema::start() {
             break;
 }
 
-// id, nome, email, senha
-
 void Sistema::saveUsers() {
     fstream arquivo;
     
@@ -43,7 +41,43 @@ void Sistema::saveServers() {
     fstream arquivo;
     
     arquivo.open("../data/servers.txt", ios::app);
-    arquivo << "HelloServer";
+    arquivo << servidores.size() << endl;
+
+    for(auto& servidor : servidores) {
+        arquivo << servidor.getusuarioDonoId() << endl;
+        arquivo << servidor.getNome() << endl;
+        arquivo << servidor.getDescricao() << endl;
+        arquivo << servidor.getcodigoConvite() << endl;
+
+        arquivo << servidor.getparticipantesIDs().size() << endl;
+        for(auto& id : servidor.getparticipantesIDs())
+            arquivo << id << endl;
+
+        arquivo << servidor.getCanais().size() << endl;
+        for(auto& canal : servidor.getCanais()) {
+            arquivo << canal->getNome() << endl;
+            if(dynamic_cast<const CanalTexto*>(canal) != nullptr) {
+                arquivo << "texto" << endl;
+                CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canal);
+                arquivo << canalTexto->getMensagens().size() << endl;
+                vector<Mensagem>& mensagens = canalTexto->getMensagens();
+
+                for(Mensagem& mensagem : mensagens) {
+                    arquivo << mensagem.getenviadaPor() << endl;
+
+                    time_t dataHora = mensagem.getdataHora();
+                    char bufferDataHora[20];
+                    strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&dataHora));
+
+                    arquivo << bufferDataHora << endl;
+                    arquivo << mensagem.getConteudo() << endl;
+                }
+            }
+            else {
+                arquivo << "voz" << endl;
+            }
+        }
+    }
     arquivo.close();
 }
 
@@ -198,6 +232,8 @@ bool Sistema::readInput() {
         cout << "create-channel [name] [type] - Create a chanel in the current server" << endl;
         cout << "enter-channel [name] - Enter in a channel of the current server" << endl;
         cout << "leave-channel - Leave the current channel" << endl;
+        cout << "send-message [message] - Send a message to the current channel" << endl;
+        cout << "list-messages - Send a message to the current channel" << endl;
     }
     else {
         cout << "Error! Invalid command." << endl;
