@@ -21,6 +21,32 @@ void Sistema::start() {
             break;
 }
 
+void Sistema::loadUsers() {
+    fstream arquivo;
+    string text;
+    vector<string> lines;
+
+    arquivo.open("../data/users.txt", ios::in);
+    if(arquivo.is_open()){   
+        while(getline(arquivo, text)){
+            lines.push_back(text);
+        }
+        arquivo.close(); 
+    }
+
+    string email;
+    string senha;
+    string nome;
+
+    for(int i = 2; i < lines.size() - 2; i+=4){
+        nome = lines.at(i);
+        email = lines.at(i+1);
+        senha = lines.at(i+2);
+
+        createUser(email, senha, nome);
+    }
+}
+
 void Sistema::saveUsers() {
     fstream arquivo;
     

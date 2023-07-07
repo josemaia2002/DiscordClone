@@ -9,8 +9,9 @@ using namespace std;
 
 int main(int argc, char *argv[]){
     Sistema app;
+    app.loadUsers(); 
     app.start();
-    app.save();
+    // app.save();
 
     return 0;
 }

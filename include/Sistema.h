@@ -89,6 +89,14 @@ public:
     void start();
 
     /**
+     * \brief Load the data.
+     * 
+     * This method is responsible for loading
+     * the initial data of the system.
+     */
+    void loadUsers();
+
+    /**
      * \brief The The current channel.
      * 
      * Represents the channel where the user is
