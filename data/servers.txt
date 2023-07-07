@@ -1,38 +1,39 @@
-1
-1
-RPG
-ervidor para jogar e discutir sobre rpg
-Mellon
-3
 2
 1
-3
-3
+rpg
+
+
+1
+1
+2
 DarkSun
-texto
+voz
 1
 1
-07/07/2023 - 11:05
-Aventuras no deserto.
-ForgottenRealms
+07/07/2023 - 17:55
+Aventuras no deserto
+Mystara
 texto
-0
-GreyHawk
-texto
-5
 3
-07/07/2023 - 11:05
-Bora jogar!
 1
-07/07/2023 - 11:05
-Vou já entrar.
+07/07/2023 - 17:54
+Bora jogar
 1
-07/07/2023 - 11:05
-To só me ajeitando.
+07/07/2023 - 17:54
+Eu estou com uma aventura nova
+1
+07/07/2023 - 17:54
+Vai ser foda
 2
-07/07/2023 - 11:05
-Eu tambem.
+Barbie
+
+
+1
 2
-07/07/2023 - 11:05
-Me esperem.
-0
+1
+Plastic
+texto
+1
+2
+07/07/2023 - 17:58
+Its fantastic

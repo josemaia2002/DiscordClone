@@ -48,7 +48,29 @@ void Sistema::loadUsers() {
 }
 
 void Sistema::loadServers() {
-    cout << "To be done!" << endl;
+    fstream arquivo;
+    string text;
+    vector<string> lines;
+
+    arquivo.open("../data/servers.txt", ios::in);
+    if(arquivo.is_open()){   
+        while(getline(arquivo, text)){
+            lines.push_back(text);
+        }
+        arquivo.close(); 
+    }
+
+    string email;
+    string senha;
+    string nome;
+
+    for(int i = 2; i < lines.size() - 2; i+=4){
+        nome = lines.at(i);
+        email = lines.at(i+1);
+        senha = lines.at(i+2);
+
+        createUser(email, senha, nome);
+    }
 }
 
 void Sistema::load() {
@@ -108,8 +130,20 @@ void Sistema::saveServers() {
                     arquivo << mensagem.getConteudo() << endl;
                 }
             }
-            else {
+            else if(dynamic_cast<const CanalVoz*>(canal) != nullptr) {
                 arquivo << "voz" << endl;
+                CanalVoz* canalVoz = dynamic_cast<CanalVoz*>(canal);
+                arquivo << "1" << endl;
+
+                Mensagem voiceMessage = canalVoz->getultimaMensagem();
+                string nome = getNomeUsuario(voiceMessage.getenviadaPor()); 
+                time_t data = voiceMessage.getdataHora();
+                char bufferDataHora[20];
+                strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&data));
+
+                arquivo << voiceMessage.getenviadaPor() << endl;
+                arquivo << bufferDataHora << endl;
+                arquivo << voiceMessage.getConteudo() << endl;
             }
         }
     }
