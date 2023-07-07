@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char *argv[]){
     Sistema app;
-    app.loadUsers(); 
+    app.load(); 
     app.start();
     // app.save();
 

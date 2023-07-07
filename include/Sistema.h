@@ -58,6 +58,22 @@ private:
     Canal* canalAtual;
 
     /**
+     * \brief Load the data.
+     * 
+     * This method is responsible for loading
+     * the initial data of the system.
+     */
+    void loadUsers();
+
+    /**
+     * \brief Load the data.
+     * 
+     * This method is responsible for loading
+     * the initial data of the system.
+     */
+    void loadServers();
+
+    /**
      * \brief The The current channel.
      * 
      * Represents the channel where the user is
@@ -94,7 +110,7 @@ public:
      * This method is responsible for loading
      * the initial data of the system.
      */
-    void loadUsers();
+    void load();
 
     /**
      * \brief The The current channel.

@@ -47,6 +47,15 @@ void Sistema::loadUsers() {
     }
 }
 
+void Sistema::loadServers() {
+    cout << "To be done!" << endl;
+}
+
+void Sistema::load() {
+    loadUsers();
+    // loadServers();
+}
+
 void Sistema::saveUsers() {
     fstream arquivo;
     
@@ -580,18 +589,22 @@ void Sistema::sendMessage(const string& mensagem) {
         cout << "Error - Not inside a channel." << endl;
         return;
     }
-    CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canalAtual);
-    if(canalTexto == nullptr) {
-        cout << "Error - Not a text channel." << endl;
-        return;
-    }
 
     Mensagem novaMensagem;
     novaMensagem.setConteudo(mensagem);
     novaMensagem.setdataHora(time(nullptr));
     novaMensagem.setenviadaPor(usuarioLogado->getId());
 
-    canalTexto->adicionarMensagem(novaMensagem);
+    CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canalAtual);
+    CanalVoz* canalVoz = dynamic_cast<CanalVoz*>(canalAtual);
+
+    if(dynamic_cast<const CanalTexto*>(canalAtual) != nullptr) {
+        canalTexto->adicionarMensagem(novaMensagem);
+    }
+
+    if(dynamic_cast<const CanalVoz*>(canalAtual) != nullptr) {
+        canalVoz->setultimaMensagem(novaMensagem);
+    }
 }
 
 void Sistema::listMessages() {
@@ -612,25 +625,35 @@ void Sistema::listMessages() {
     }
 
     CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canalAtual);
-    if(canalTexto == nullptr) {
-        cout << "Error - Not a text channel." << endl;
-        return;
+    CanalVoz* canalVoz = dynamic_cast<CanalVoz*>(canalAtual);
+
+    if(dynamic_cast<const CanalTexto*>(canalAtual) != nullptr) {
+        vector<Mensagem>& mensagens = canalTexto->getMensagens();
+        if(mensagens.empty()) {
+            cout << "Error - No messages found." << endl;
+            return;
+        }
+
+        for(Mensagem& mensagem : mensagens) {
+            string nomeUsuario = getNomeUsuario(mensagem.getenviadaPor());
+
+            time_t dataHora = mensagem.getdataHora();
+            char bufferDataHora[20];
+            strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&dataHora));
+
+            cout << nomeUsuario << "<" << bufferDataHora << ">: " << mensagem.getConteudo() << endl;
+        }
     }
 
-    vector<Mensagem>& mensagens = canalTexto->getMensagens();
-    if(mensagens.empty()) {
-        cout << "Error - No messages found." << endl;
-        return;
-    }
+    if(dynamic_cast<const CanalVoz*>(canalAtual) != nullptr) {
+        Mensagem voiceMessage = canalVoz->getultimaMensagem();
 
-    for(Mensagem& mensagem : mensagens) {
-        string nomeUsuario = getNomeUsuario(mensagem.getenviadaPor());
-
-        time_t dataHora = mensagem.getdataHora();
+        string nome = getNomeUsuario(voiceMessage.getenviadaPor()); 
+        time_t data = voiceMessage.getdataHora();
         char bufferDataHora[20];
-        strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&dataHora));
+        strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&data));
 
-        cout << nomeUsuario << "<" << bufferDataHora << ">: " << mensagem.getConteudo() << endl;
+        cout << nome << "<" << bufferDataHora << ">: " << voiceMessage.getConteudo() << endl;
     }
 }
 

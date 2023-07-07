@@ -41,6 +41,13 @@ public:
      */ 
     Mensagem getultimaMensagem();
 
+    /**
+     * \brief The channel's list of messages.
+     * 
+     * Represents all the messages of the channel.
+     */ 
+    void setultimaMensagem(Mensagem ultimaMensagem);
+
 };
 
 #endif
