@@ -1,8 +1,8 @@
 2
 1
 rpg
-
-
+Servidor para discutar e jogar rpg.
+Mellon
 1
 1
 2
@@ -26,8 +26,8 @@ Eu estou com uma aventura nova
 Vai ser foda
 2
 Barbie
-
-
+Fan club da Barbie
+fica ligado
 1
 2
 1

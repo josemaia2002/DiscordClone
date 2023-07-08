@@ -59,23 +59,94 @@ void Sistema::loadServers() {
         }
         arquivo.close(); 
     }
+    
+    int ownerID;
+    string serverName;
+    string serverDesc;
+    string serverCode;
+    int numberUsers;
+    vector<int> userIdList;
+    
+    int currentLine = 0;
 
-    string email;
-    string senha;
-    string nome;
+    int numberServers = stoi(lines.at(0));
 
-    for(int i = 2; i < lines.size() - 2; i+=4){
+    ownerID = stoi(lines.at(1));
+    serverName = lines.at(2);
+    serverDesc = lines.at(3);
+    serverCode = lines.at(4);
+    numberUsers = stoi(lines.at(5));
+
+    for(currentLine = 6; currentLine < 6 + numberUsers; currentLine++){
+        ownerID = stoi(lines.at(currentLine));
+        userIdList.push_back(ownerID);
+    }
+
+    int numberChannels;
+    string channelName;
+    string channelType;
+    int numberMessages;
+
+    numberChannels = stoi(lines.at(currentLine));
+    channelName = lines.at(currentLine + 1);
+    channelType = lines.at(currentLine + 2);
+    numberMessages = stoi(lines.at(currentLine + 3));
+    currentLine += 3;
+
+    int userID;
+
+    for(int i = currentLine; currentLine < i + numberMessages; currentLine++){
+
+
+        cout << "Linha: " << currentLine + 1 << endl;
+    }
+
+
+
+
+
+    cout << "Number of servers " << numberServers << endl;
+    cout << "Owner id: " << ownerID << endl;
+    cout << "Server name " << serverName << endl;
+    cout << "Server description: " << serverDesc << endl;
+    cout << "Server invitation code: " << serverCode << endl;
+    cout << "Number of users: " << numberUsers << endl;
+    cout << "List of users: " << endl;
+
+    for(auto& id : userIdList) {
+        cout << id << endl;
+    }
+
+    cout << "Number of channels: " << numberChannels << endl;
+    cout << "Channel name: " << channelName << endl;
+    cout << "Channel type: " << channelType << endl;
+    cout << "Number of messages: " << numberMessages << endl;
+
+    cout << "Current line: " << currentLine + 1 << endl;
+
+/*
+    for(int i = 2; i < lines.size() - 2; i += 4){
         nome = lines.at(i);
         email = lines.at(i+1);
         senha = lines.at(i+2);
-
-        createUser(email, senha, nome);
     }
+*/
+
+
+/*
+    createServer(const string& nome);
+    setusuarioDonoId(int usuarioDonoId);
+    changeServerDesc(const string& nome, const string& descricao);
+    changeServerCode(const string& nome, const string& codigoConvite);
+*/
+
+
+    
 }
 
 void Sistema::load() {
-    loadUsers();
-    // loadServers();
+    // loadUsers();
+    loadServers();
 }
 
 void Sistema::saveUsers() {
