@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <bits/stdc++.h> 
 #include <sstream>
 #include <fstream>
 #include "Sistema.h"
@@ -59,6 +60,11 @@ void Sistema::loadServers() {
         }
         arquivo.close(); 
     }
+
+    // TODO Planejar a forma de carregar os dados corretamente.
+    // usuarioLogado, servidorAtual, canalAtual
+
+
     
     int ownerID;
     string serverName;
@@ -71,15 +77,22 @@ void Sistema::loadServers() {
 
     int numberServers = stoi(lines.at(0));
 
+    // TODO Implementar loop de servidores.
+
     ownerID = stoi(lines.at(1));
     serverName = lines.at(2);
     serverDesc = lines.at(3);
     serverCode = lines.at(4);
     numberUsers = stoi(lines.at(5));
 
+    int memberID;
+
+    Servidor novoServidor(ownerID, serverName, serverDesc, serverCode);
+    servidores.push_back(novoServidor);
+
     for(currentLine = 6; currentLine < 6 + numberUsers; currentLine++){
-        ownerID = stoi(lines.at(currentLine));
-        userIdList.push_back(ownerID);
+        memberID = stoi(lines.at(currentLine));
+        novoServidor.adicionarParticipante(memberID);
     }
 
     int numberChannels;
@@ -88,18 +101,75 @@ void Sistema::loadServers() {
     int numberMessages;
 
     numberChannels = stoi(lines.at(currentLine));
-    channelName = lines.at(currentLine + 1);
-    channelType = lines.at(currentLine + 2);
-    numberMessages = stoi(lines.at(currentLine + 3));
-    currentLine += 3;
 
-    int userID;
+    for(int i = 0; i < numberChannels; i++){
+        int userID;
+        char dataBefore[20];
+        char bufferDataAfter[20];
+        struct tm tm;
+        time_t t;
+        string content;
+        Mensagem m;
 
-    for(int i = currentLine; currentLine < i + numberMessages; currentLine++){
 
 
-        cout << "Linha: " << currentLine + 1 << endl;
+        channelName = lines.at(currentLine + 1);
+        channelType = lines.at(currentLine + 2);
+        numberMessages = stoi(lines.at(currentLine + 3));
+
+        currentLine += 4;
+
+        if(channelType == "texto") {
+            CanalTexto* novoCanal = new CanalTexto(channelName);
+            novoServidor->adicionarCanal(novoCanal);
+
+            for(int i = 0; i < numberMessages; i++) {
+                userID = stoi(lines.at(currentLine));
+                strcpy(dataBefore, (lines.at(currentLine + 1)).c_str()); 
+                strptime(dataBefore, "%d/%m/%Y - %H:%M", &tm);
+                strftime(bufferDataAfter, sizeof(bufferDataAfter), "%d/%m/%Y - %H:%M", &tm);
+                time_t t = mktime(&tm);
+
+                content = lines.at(currentLine + 2);
+
+                m.setdataHora(t);
+                m.setenviadaPor(userID);
+                m.setConteudo(content);
+
+                novoCanal.adicionarMensagem(m);
+            }
+
+
+            currentLine += (3 * numberMessages);
+
+        } 
+        else if (channelType == "voz") {
+            CanalVoz* novoCanal = new CanalVoz(channelName);
+            novoServidor->adicionarCanal(novoCanal);
+
+            userID = stoi(lines.at(currentLine));
+
+            strcpy(dataBefore, (lines.at(currentLine + 1)).c_str()); 
+            strptime(dataBefore, "%d/%m/%Y - %H:%M", &tm);
+            strftime(bufferDataAfter, sizeof(bufferDataAfter), "%d/%m/%Y - %H:%M", &tm);
+            time_t t = mktime(&tm);
+
+            content = lines.at(currentLine + 2);
+
+            m.setdataHora(t);
+            m.setenviadaPor(userID);
+            m.setConteudo(content);
+
+            novoCanal.setultimaMensagem(m);
+
+            currentLine += 3;
+        }
+
     }
+
+
+    cout << currentLine << endl;
+
 
 
 
@@ -122,30 +192,13 @@ void Sistema::loadServers() {
     cout << "Channel type: " << channelType << endl;
     cout << "Number of messages: " << numberMessages << endl;
 
-    cout << "Current line: " << currentLine + 1 << endl;
-
-/*
-    for(int i = 2; i < lines.size() - 2; i += 4){
-        nome = lines.at(i);
-        email = lines.at(i+1);
-        senha = lines.at(i+2);
-    }
-*/
-
-
-/*
-    createServer(const string& nome);
-    setusuarioDonoId(int usuarioDonoId);
-    changeServerDesc(const string& nome, const string& descricao);
-    changeServerCode(const string& nome, const string& codigoConvite);
-*/
-
+    cout << "User id: " << userID << endl;
 
     
 }
 
 void Sistema::load() {
-    // loadUsers();
+    loadUsers();
     loadServers();
 }
 
