@@ -102,8 +102,11 @@ void Sistema::loadServers() {
 
     numberChannels = stoi(lines.at(currentLine));
 
+    int userID;
+
+    cout << currentLine << endl;
+
     for(int i = 0; i < numberChannels; i++){
-        int userID;
         char dataBefore[20];
         char bufferDataAfter[20];
         struct tm tm;
@@ -117,11 +120,17 @@ void Sistema::loadServers() {
         channelType = lines.at(currentLine + 2);
         numberMessages = stoi(lines.at(currentLine + 3));
 
+
+        cout << "Channel name: " << channelName << endl;
+        cout << "Channel type: " << channelType << endl;
+        cout << "Number of messages: " << numberMessages << endl;
+
         currentLine += 4;
+
 
         if(channelType == "texto") {
             CanalTexto* novoCanal = new CanalTexto(channelName);
-            novoServidor->adicionarCanal(novoCanal);
+            novoServidor.adicionarCanal(novoCanal);
 
             for(int i = 0; i < numberMessages; i++) {
                 userID = stoi(lines.at(currentLine));
@@ -136,16 +145,22 @@ void Sistema::loadServers() {
                 m.setenviadaPor(userID);
                 m.setConteudo(content);
 
-                novoCanal.adicionarMensagem(m);
+                novoCanal->adicionarMensagem(m);
+
+                cout << m.getdataHora() << endl; 
+                cout << m.getenviadaPor() << endl;
+                cout << m.getConteudo() << endl;
+
+                currentLine += 3;
             }
 
 
-            currentLine += (3 * numberMessages);
+            // currentLine += (3 * numberMessages);
 
         } 
         else if (channelType == "voz") {
             CanalVoz* novoCanal = new CanalVoz(channelName);
-            novoServidor->adicionarCanal(novoCanal);
+            novoServidor.adicionarCanal(novoCanal);
 
             userID = stoi(lines.at(currentLine));
 
@@ -160,9 +175,11 @@ void Sistema::loadServers() {
             m.setenviadaPor(userID);
             m.setConteudo(content);
 
-            novoCanal.setultimaMensagem(m);
+            novoCanal->setultimaMensagem(m);
 
-            currentLine += 3;
+            cout << content << endl;
+
+            currentLine += 2;
         }
 
     }
@@ -172,7 +189,7 @@ void Sistema::loadServers() {
 
 
 
-
+/*
 
 
     cout << "Number of servers " << numberServers << endl;
@@ -195,6 +212,8 @@ void Sistema::loadServers() {
     cout << "User id: " << userID << endl;
 
     
+*/
+
 }
 
 void Sistema::load() {
