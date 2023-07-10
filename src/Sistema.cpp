@@ -22,6 +22,8 @@ void Sistema::start() {
     while(true) 
         if(!readInput())
             break;
+
+    save();
 }
 
 void Sistema::loadUsers() {
@@ -50,6 +52,11 @@ void Sistema::loadUsers() {
 
         Usuario novoUsuario(id, nome, email, senha);
         usuarios.push_back(novoUsuario);
+
+        cout << novoUsuario.getId() << endl; 
+        cout << novoUsuario.getNome() << endl; 
+        cout << novoUsuario.getEmail() << endl; 
+        cout << novoUsuario.getSenha() << endl; 
     }
 }
 
@@ -94,7 +101,13 @@ void Sistema::loadServers() {
 
         for(int loop = currentLine; currentLine < loop + numberUsers; currentLine++){
             memberID = stoi(lines.at(currentLine));
-            novoServidor.adicionarParticipante(memberID);
+
+            for(auto& servidor : servidores) {
+                if(servidor.getNome() == serverName) {
+                    servidor.adicionarParticipante(memberID);
+                    servidorAtual = &servidor;
+                }
+            }
         }
 
         int numberChannels;
@@ -183,7 +196,6 @@ void Sistema::load() {
     loadUsers();
     loadServers();
 }
-
 
 void Sistema::saveUsers() {
     fstream arquivo;

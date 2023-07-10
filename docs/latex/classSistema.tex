@@ -17,9 +17,9 @@ Represents the system.
 void \mbox{\hyperlink{classSistema_a320eda9f080eb866e60c4507787989c8}{start}} ()
 \begin{DoxyCompactList}\small\item\em Initialize the system. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSistema_a9c91b72b4b21f45485c505527641b6a3}{load}} ()
-\begin{DoxyCompactList}\small\item\em Load the data. \end{DoxyCompactList}\item 
-vector$<$ string $>$ \mbox{\hyperlink{classSistema_a9e14a87d4d11667d07a82bb968e97a6d}{access\+File}} (string file\+Name)
-\begin{DoxyCompactList}\small\item\em Get the data from a file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Call the loading functions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSistema_afcb4ac27d741743642b40be5690991fe}{save}} ()
+\begin{DoxyCompactList}\small\item\em Call the saving functions. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classSistema_a8432a21717f70a87890059ce2e99a048}{read\+Input}} ()
 \begin{DoxyCompactList}\small\item\em Process the users\textquotesingle{}s commands. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classSistema_aabe976127ba14a89d9d07cff1a7810c0}{quit}} ()
@@ -60,6 +60,17 @@ void \mbox{\hyperlink{classSistema_ae4036743e108c5ac50476d2ef306ffe4}{list\+Mess
 \begin{DoxyCompactList}\small\item\em Method to list the channel\textquotesingle{}s messages. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{classSistema_ab8e3288f3de0e87b683e1411259ea742}{get\+Nome\+Usuario}} (int id)
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSistema_aae5d95983fdbbc643a00b33d38b4c815}{load\+Users}} ()
+\begin{DoxyCompactList}\small\item\em Load the users data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSistema_a05b3e7b610b49171a5113fbcd28f586c}{load\+Servers}} ()
+\begin{DoxyCompactList}\small\item\em Load the servers data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSistema_ad809faf8bb5c9c379cc21735dfa4b848}{save\+Users}} ()
+\begin{DoxyCompactList}\small\item\em Save the users data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSistema_a4b065ebcf6d3ee9ea1d60558db0c3a8d}{save\+Servers}} ()
+\begin{DoxyCompactList}\small\item\em Save the servers data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -94,17 +105,7 @@ Creates a new system.
 Creates a new system and sets its atributes with standard values. 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classSistema_a9e14a87d4d11667d07a82bb968e97a6d}\label{classSistema_a9e14a87d4d11667d07a82bb968e97a6d} 
-\index{Sistema@{Sistema}!accessFile@{accessFile}}
-\index{accessFile@{accessFile}!Sistema@{Sistema}}
-\doxysubsubsection{\texorpdfstring{accessFile()}{accessFile()}}
-{\footnotesize\ttfamily vector$<$ string $>$ Sistema\+::access\+File (\begin{DoxyParamCaption}\item[{string}]{file\+Name }\end{DoxyParamCaption})}
-
-
-
-Get the data from a file. 
-
-This method access a file and get its content. \Hypertarget{classSistema_a656991338d5e68d011ed74405a5900e2}\label{classSistema_a656991338d5e68d011ed74405a5900e2} 
+\Hypertarget{classSistema_a656991338d5e68d011ed74405a5900e2}\label{classSistema_a656991338d5e68d011ed74405a5900e2} 
 \index{Sistema@{Sistema}!changeServerCode@{changeServerCode}}
 \index{changeServerCode@{changeServerCode}!Sistema@{Sistema}}
 \doxysubsubsection{\texorpdfstring{changeServerCode()}{changeServerCode()}}
@@ -319,9 +320,29 @@ Traverses the list of servers and displays their names. \Hypertarget{classSistem
 
 
 
-Load the data. 
+Call the loading functions. 
 
-This method is responsible for loading the initial data of the system. \Hypertarget{classSistema_a7ecbeeba44b7cc7dc204eed1036c987b}\label{classSistema_a7ecbeeba44b7cc7dc204eed1036c987b} 
+This method is responsible for calling the function that load the system\textquotesingle{}s data. \Hypertarget{classSistema_a05b3e7b610b49171a5113fbcd28f586c}\label{classSistema_a05b3e7b610b49171a5113fbcd28f586c} 
+\index{Sistema@{Sistema}!loadServers@{loadServers}}
+\index{loadServers@{loadServers}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{loadServers()}{loadServers()}}
+{\footnotesize\ttfamily void Sistema\+::load\+Servers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Load the servers data. 
+
+This method is responsible for loading the servers data to the system. \Hypertarget{classSistema_aae5d95983fdbbc643a00b33d38b4c815}\label{classSistema_aae5d95983fdbbc643a00b33d38b4c815} 
+\index{Sistema@{Sistema}!loadUsers@{loadUsers}}
+\index{loadUsers@{loadUsers}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{loadUsers()}{loadUsers()}}
+{\footnotesize\ttfamily void Sistema\+::load\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Load the users data. 
+
+This method is responsible for loading the users data to the system. \Hypertarget{classSistema_a7ecbeeba44b7cc7dc204eed1036c987b}\label{classSistema_a7ecbeeba44b7cc7dc204eed1036c987b} 
 \index{Sistema@{Sistema}!login@{login}}
 \index{login@{login}!Sistema@{Sistema}}
 \doxysubsubsection{\texorpdfstring{login()}{login()}}
@@ -377,7 +398,37 @@ Traverses the list untill the desired server is found, then removes it.
 {\em nome} & The name of the server to be deleted. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classSistema_a8f31ee8bbb5cc0881007bda0c6c5b1bb}\label{classSistema_a8f31ee8bbb5cc0881007bda0c6c5b1bb} 
+\Hypertarget{classSistema_afcb4ac27d741743642b40be5690991fe}\label{classSistema_afcb4ac27d741743642b40be5690991fe} 
+\index{Sistema@{Sistema}!save@{save}}
+\index{save@{save}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily void Sistema\+::save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Call the saving functions. 
+
+This method is responsible for calling the function that save the system\textquotesingle{}s data. \Hypertarget{classSistema_a4b065ebcf6d3ee9ea1d60558db0c3a8d}\label{classSistema_a4b065ebcf6d3ee9ea1d60558db0c3a8d} 
+\index{Sistema@{Sistema}!saveServers@{saveServers}}
+\index{saveServers@{saveServers}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{saveServers()}{saveServers()}}
+{\footnotesize\ttfamily void Sistema\+::save\+Servers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Save the servers data. 
+
+This method is responsible for saving the servers data in the system. \Hypertarget{classSistema_ad809faf8bb5c9c379cc21735dfa4b848}\label{classSistema_ad809faf8bb5c9c379cc21735dfa4b848} 
+\index{Sistema@{Sistema}!saveUsers@{saveUsers}}
+\index{saveUsers@{saveUsers}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{saveUsers()}{saveUsers()}}
+{\footnotesize\ttfamily void Sistema\+::save\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Save the users data. 
+
+This method is responsible for saving the users data in the system. \Hypertarget{classSistema_a8f31ee8bbb5cc0881007bda0c6c5b1bb}\label{classSistema_a8f31ee8bbb5cc0881007bda0c6c5b1bb} 
 \index{Sistema@{Sistema}!sendMessage@{sendMessage}}
 \index{sendMessage@{sendMessage}!Sistema@{Sistema}}
 \doxysubsubsection{\texorpdfstring{sendMessage()}{sendMessage()}}

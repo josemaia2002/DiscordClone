@@ -58,32 +58,34 @@ private:
     Canal* canalAtual;
 
     /**
-     * \brief Load the data.
+     * \brief Load the users data.
      * 
      * This method is responsible for loading
-     * the initial data of the system.
+     * the users data to the system.
      */
     void loadUsers();
 
     /**
-     * \brief Load the data.
+     * \brief Load the servers data.
      * 
      * This method is responsible for loading
-     * the initial data of the system.
+     * the servers data to the system.
      */
     void loadServers();
 
     /**
-     * \brief The The current channel.
+     * \brief Save the users data.
      * 
-     * Represents the channel where the user is
+     * This method is responsible for saving
+     * the users data in the system.
      */
     void saveUsers();
 
     /**
-     * \brief The The current channel.
+     * \brief Save the servers data.
      * 
-     * Represents the channel where the user is
+     * This method is responsible for saving
+     * the servers data in the system.
      */
     void saveServers();
     
@@ -105,17 +107,18 @@ public:
     void start();
 
     /**
-     * \brief Load the data.
+     * \brief Call the loading functions.
      * 
-     * This method is responsible for loading
-     * the initial data of the system.
+     * This method is responsible for calling
+     * the function that load the system's data.
      */
     void load();
 
     /**
-     * \brief The The current channel.
+     * \brief Call the saving functions.
      * 
-     * Represents the channel where the user is
+     * This method is responsible for calling
+     * the function that save the system's data.
      */
     void save();
 

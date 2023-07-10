@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Concordo: Sistema Class Reference</title>
+<title>DiscordClone: Sistema Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Concordo<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">DiscordClone<span id="projectnumber">&#160;3.0</span>
    </div>
+   <div id="projectbrief">Server management system</div>
   </td>
  </tr>
  </tbody>
@@ -71,6 +72,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSistema-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Sistema Class Reference</div></div>
@@ -91,11 +93,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a320eda9f080eb866e60c4507787989c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the system.  <br /></td></tr>
 <tr class="separator:a320eda9f080eb866e60c4507787989c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c91b72b4b21f45485c505527641b6a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#a9c91b72b4b21f45485c505527641b6a3">load</a> ()</td></tr>
-<tr class="memdesc:a9c91b72b4b21f45485c505527641b6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the data.  <br /></td></tr>
+<tr class="memdesc:a9c91b72b4b21f45485c505527641b6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the loading functions.  <br /></td></tr>
 <tr class="separator:a9c91b72b4b21f45485c505527641b6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e14a87d4d11667d07a82bb968e97a6d"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#a9e14a87d4d11667d07a82bb968e97a6d">accessFile</a> (string fileName)</td></tr>
-<tr class="memdesc:a9e14a87d4d11667d07a82bb968e97a6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the data from a file.  <br /></td></tr>
-<tr class="separator:a9e14a87d4d11667d07a82bb968e97a6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb4ac27d741743642b40be5690991fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#afcb4ac27d741743642b40be5690991fe">save</a> ()</td></tr>
+<tr class="memdesc:afcb4ac27d741743642b40be5690991fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the saving functions.  <br /></td></tr>
+<tr class="separator:afcb4ac27d741743642b40be5690991fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8432a21717f70a87890059ce2e99a048"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#a8432a21717f70a87890059ce2e99a048">readInput</a> ()</td></tr>
 <tr class="memdesc:a8432a21717f70a87890059ce2e99a048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process the users's commands.  <br /></td></tr>
 <tr class="separator:a8432a21717f70a87890059ce2e99a048"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,6 +158,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8e3288f3de0e87b683e1411259ea742"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#ab8e3288f3de0e87b683e1411259ea742">getNomeUsuario</a> (int id)</td></tr>
 <tr class="separator:ab8e3288f3de0e87b683e1411259ea742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aae5d95983fdbbc643a00b33d38b4c815"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#aae5d95983fdbbc643a00b33d38b4c815">loadUsers</a> ()</td></tr>
+<tr class="memdesc:aae5d95983fdbbc643a00b33d38b4c815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the users data.  <br /></td></tr>
+<tr class="separator:aae5d95983fdbbc643a00b33d38b4c815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05b3e7b610b49171a5113fbcd28f586c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#a05b3e7b610b49171a5113fbcd28f586c">loadServers</a> ()</td></tr>
+<tr class="memdesc:a05b3e7b610b49171a5113fbcd28f586c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the servers data.  <br /></td></tr>
+<tr class="separator:a05b3e7b610b49171a5113fbcd28f586c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad809faf8bb5c9c379cc21735dfa4b848"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#ad809faf8bb5c9c379cc21735dfa4b848">saveUsers</a> ()</td></tr>
+<tr class="memdesc:ad809faf8bb5c9c379cc21735dfa4b848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the users data.  <br /></td></tr>
+<tr class="separator:ad809faf8bb5c9c379cc21735dfa4b848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b065ebcf6d3ee9ea1d60558db0c3a8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#a4b065ebcf6d3ee9ea1d60558db0c3a8d">saveServers</a> ()</td></tr>
+<tr class="memdesc:a4b065ebcf6d3ee9ea1d60558db0c3a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the servers data.  <br /></td></tr>
+<tr class="separator:a4b065ebcf6d3ee9ea1d60558db0c3a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:abb256581959e67fa9018bbbb7dee158f"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classUsuario.html">Usuario</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSistema.html#abb256581959e67fa9018bbbb7dee158f">usuarios</a></td></tr>
@@ -199,27 +216,6 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9e14a87d4d11667d07a82bb968e97a6d" name="a9e14a87d4d11667d07a82bb968e97a6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e14a87d4d11667d07a82bb968e97a6d">&#9670;&#160;</a></span>accessFile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; string &gt; Sistema::accessFile </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>fileName</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the data from a file. </p>
-<p>This method access a file and get its content. </p>
-
-</div>
-</div>
 <a id="a656991338d5e68d011ed74405a5900e2" name="a656991338d5e68d011ed74405a5900e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a656991338d5e68d011ed74405a5900e2">&#9670;&#160;</a></span>changeServerCode()</h2>
 
@@ -644,8 +640,64 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Load the data. </p>
-<p>This method is responsible for loading the initial data of the system. </p>
+<p>Call the loading functions. </p>
+<p>This method is responsible for calling the function that load the system's data. </p>
+
+</div>
+</div>
+<a id="a05b3e7b610b49171a5113fbcd28f586c" name="a05b3e7b610b49171a5113fbcd28f586c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05b3e7b610b49171a5113fbcd28f586c">&#9670;&#160;</a></span>loadServers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sistema::loadServers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load the servers data. </p>
+<p>This method is responsible for loading the servers data to the system. </p>
+
+</div>
+</div>
+<a id="aae5d95983fdbbc643a00b33d38b4c815" name="aae5d95983fdbbc643a00b33d38b4c815"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae5d95983fdbbc643a00b33d38b4c815">&#9670;&#160;</a></span>loadUsers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sistema::loadUsers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load the users data. </p>
+<p>This method is responsible for loading the users data to the system. </p>
 
 </div>
 </div>
@@ -751,6 +803,82 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="afcb4ac27d741743642b40be5690991fe" name="afcb4ac27d741743642b40be5690991fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcb4ac27d741743642b40be5690991fe">&#9670;&#160;</a></span>save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sistema::save </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call the saving functions. </p>
+<p>This method is responsible for calling the function that save the system's data. </p>
+
+</div>
+</div>
+<a id="a4b065ebcf6d3ee9ea1d60558db0c3a8d" name="a4b065ebcf6d3ee9ea1d60558db0c3a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b065ebcf6d3ee9ea1d60558db0c3a8d">&#9670;&#160;</a></span>saveServers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sistema::saveServers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Save the servers data. </p>
+<p>This method is responsible for saving the servers data in the system. </p>
+
+</div>
+</div>
+<a id="ad809faf8bb5c9c379cc21735dfa4b848" name="ad809faf8bb5c9c379cc21735dfa4b848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad809faf8bb5c9c379cc21735dfa4b848">&#9670;&#160;</a></span>saveUsers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sistema::saveUsers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Save the users data. </p>
+<p>This method is responsible for saving the users data in the system. </p>
 
 </div>
 </div>
