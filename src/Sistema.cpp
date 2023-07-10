@@ -38,13 +38,16 @@ void Sistema::loadUsers() {
     string email;
     string senha;
     string nome;
+    int id;
 
-    for(int i = 2; i < lines.size() - 2; i+=4){
-        nome = lines.at(i);
-        email = lines.at(i+1);
-        senha = lines.at(i+2);
+    for(int i = 1; i < lines.size() - 2; i+=4){
+        id = stoi(lines.at(i));
+        nome = lines.at(i+1);
+        email = lines.at(i+2);
+        senha = lines.at(i+3);
 
-        createUser(email, senha, nome);
+        Usuario novoUsuario(id, nome, email, senha);
+        usuarios.push_back(novoUsuario);
     }
 }
 
@@ -60,11 +63,6 @@ void Sistema::loadServers() {
         }
         arquivo.close(); 
     }
-
-    // TODO Planejar a forma de carregar os dados corretamente.
-    // usuarioLogado, servidorAtual, canalAtual
-
-
     
     int ownerID;
     string serverName;
@@ -78,12 +76,7 @@ void Sistema::loadServers() {
     int numberServers = stoi(lines.at(currentLine));
     currentLine++;
 
-    // TODO Implementar loop de servidores.
-
-
     for(int serverLoop = 0; serverLoop < numberServers; serverLoop++) {
-        cout << currentLine << endl;
-
         ownerID = stoi(lines.at(currentLine));
         serverName = lines.at(currentLine + 1);
         serverDesc = lines.at(currentLine + 2);
@@ -92,18 +85,10 @@ void Sistema::loadServers() {
 
         currentLine += 5;
 
-        cout << "Owner id: " << ownerID << endl;
-        cout << "Server name " << serverName << endl;
-        cout << "Server description: " << serverDesc << endl;
-        cout << "Server invitation code: " << serverCode << endl;
-        cout << "Number of users: " << numberUsers << endl;
-
         int memberID;
 
         Servidor novoServidor(ownerID, serverName, serverDesc, serverCode);
         servidores.push_back(novoServidor);
-
-        cout << "Current Line: " << currentLine << endl;
 
         for(int loop = currentLine; currentLine < loop + numberUsers; currentLine++){
             memberID = stoi(lines.at(currentLine));
@@ -119,8 +104,6 @@ void Sistema::loadServers() {
 
         int userID;
 
-        cout << currentLine << endl;
-
         for(int i = 0; i < numberChannels; i++){
             char dataBefore[20];
             char bufferDataAfter[20];
@@ -129,22 +112,21 @@ void Sistema::loadServers() {
             string content;
             Mensagem m;
 
-
-
             channelName = lines.at(currentLine + 1);
             channelType = lines.at(currentLine + 2);
             numberMessages = stoi(lines.at(currentLine + 3));
-
-
-            cout << "Channel name: " << channelName << endl;
-            cout << "Channel type: " << channelType << endl;
-            cout << "Number of messages: " << numberMessages << endl;
 
             currentLine += 4;
 
             if(channelType == "texto") {
                 CanalTexto* novoCanal = new CanalTexto(channelName);
-                novoServidor.adicionarCanal(novoCanal);
+
+                for(auto& servidor : servidores) {
+                    if(servidor.getNome() == serverName) {
+                        servidor.adicionarCanal(novoCanal);
+                        servidorAtual = &servidor;
+                    }
+                }
 
                 for(int i = 0; i < numberMessages; i++) {
                     userID = stoi(lines.at(currentLine));
@@ -161,20 +143,18 @@ void Sistema::loadServers() {
 
                     novoCanal->adicionarMensagem(m);
 
-                    cout << m.getdataHora() << endl; 
-                    cout << m.getenviadaPor() << endl;
-                    cout << m.getConteudo() << endl;
-
                     currentLine += 3;
                 }
-
-
-                // currentLine += (3 * numberMessages);
-
             } 
             else if (channelType == "voz") {
                 CanalVoz* novoCanal = new CanalVoz(channelName);
-                novoServidor.adicionarCanal(novoCanal);
+
+                for(auto& servidor : servidores) {
+                    if(servidor.getNome() == serverName) {
+                        servidor.adicionarCanal(novoCanal);
+                        servidorAtual = &servidor;
+                    }
+                }
 
                 userID = stoi(lines.at(currentLine));
 
@@ -191,39 +171,10 @@ void Sistema::loadServers() {
 
                 novoCanal->setultimaMensagem(m);
 
-                cout << content << endl;
-
                 currentLine += 2;
             }
         }
     }
-
-
-    cout << currentLine << endl;
-
-
-
-/*
-    cout << "Number of servers " << numberServers << endl;
-    cout << "Owner id: " << ownerID << endl;
-    cout << "Server name " << serverName << endl;
-    cout << "Server description: " << serverDesc << endl;
-    cout << "Server invitation code: " << serverCode << endl;
-    cout << "Number of users: " << numberUsers << endl;
-    cout << "List of users: " << endl;
-
-    for(auto& id : userIdList) {
-        cout << id << endl;
-    }
-
-    cout << "Number of channels: " << numberChannels << endl;
-    cout << "Channel name: " << channelName << endl;
-    cout << "Channel type: " << channelType << endl;
-    cout << "Number of messages: " << numberMessages << endl;
-
-    cout << "User id: " << userID << endl;
-*/
-
 }
 
 void Sistema::load() {
