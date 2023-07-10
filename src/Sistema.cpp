@@ -75,65 +75,98 @@ void Sistema::loadServers() {
     
     int currentLine = 0;
 
-    int numberServers = stoi(lines.at(0));
+    int numberServers = stoi(lines.at(currentLine));
 
     // TODO Implementar loop de servidores.
 
-    ownerID = stoi(lines.at(1));
-    serverName = lines.at(2);
-    serverDesc = lines.at(3);
-    serverCode = lines.at(4);
-    numberUsers = stoi(lines.at(5));
 
-    int memberID;
+    for(int serverLoop = 1; serverLoop < numberServers; serverLoop++) {
+        cout << currentLine << endl;
+        
+        ownerID = stoi(lines.at(currentLine + 1));
+        serverName = lines.at(currentLine + 2);
+        serverDesc = lines.at(currentLine + 3);
+        serverCode = lines.at(currentLine + 4);
+        numberUsers = stoi(lines.at(currentLine + 5));
 
-    Servidor novoServidor(ownerID, serverName, serverDesc, serverCode);
-    servidores.push_back(novoServidor);
+        int memberID;
 
-    for(currentLine = 6; currentLine < 6 + numberUsers; currentLine++){
-        memberID = stoi(lines.at(currentLine));
-        novoServidor.adicionarParticipante(memberID);
-    }
+        Servidor novoServidor(ownerID, serverName, serverDesc, serverCode);
+        servidores.push_back(novoServidor);
 
-    int numberChannels;
-    string channelName;
-    string channelType;
-    int numberMessages;
+        for(currentLine = 6; currentLine < 6 + numberUsers; currentLine++){
+            memberID = stoi(lines.at(currentLine));
+            novoServidor.adicionarParticipante(memberID);
+        }
 
-    numberChannels = stoi(lines.at(currentLine));
+        int numberChannels;
+        string channelName;
+        string channelType;
+        int numberMessages;
 
-    int userID;
+        numberChannels = stoi(lines.at(currentLine));
 
-    cout << currentLine << endl;
+        int userID;
 
-    for(int i = 0; i < numberChannels; i++){
-        char dataBefore[20];
-        char bufferDataAfter[20];
-        struct tm tm;
-        time_t t;
-        string content;
-        Mensagem m;
+        cout << currentLine << endl;
 
-
-
-        channelName = lines.at(currentLine + 1);
-        channelType = lines.at(currentLine + 2);
-        numberMessages = stoi(lines.at(currentLine + 3));
+        for(int i = 0; i < numberChannels; i++){
+            char dataBefore[20];
+            char bufferDataAfter[20];
+            struct tm tm;
+            time_t t;
+            string content;
+            Mensagem m;
 
 
-        cout << "Channel name: " << channelName << endl;
-        cout << "Channel type: " << channelType << endl;
-        cout << "Number of messages: " << numberMessages << endl;
 
-        currentLine += 4;
+            channelName = lines.at(currentLine + 1);
+            channelType = lines.at(currentLine + 2);
+            numberMessages = stoi(lines.at(currentLine + 3));
 
 
-        if(channelType == "texto") {
-            CanalTexto* novoCanal = new CanalTexto(channelName);
-            novoServidor.adicionarCanal(novoCanal);
+            cout << "Channel name: " << channelName << endl;
+            cout << "Channel type: " << channelType << endl;
+            cout << "Number of messages: " << numberMessages << endl;
 
-            for(int i = 0; i < numberMessages; i++) {
+            currentLine += 4;
+
+            if(channelType == "texto") {
+                CanalTexto* novoCanal = new CanalTexto(channelName);
+                novoServidor.adicionarCanal(novoCanal);
+
+                for(int i = 0; i < numberMessages; i++) {
+                    userID = stoi(lines.at(currentLine));
+                    strcpy(dataBefore, (lines.at(currentLine + 1)).c_str()); 
+                    strptime(dataBefore, "%d/%m/%Y - %H:%M", &tm);
+                    strftime(bufferDataAfter, sizeof(bufferDataAfter), "%d/%m/%Y - %H:%M", &tm);
+                    time_t t = mktime(&tm);
+
+                    content = lines.at(currentLine + 2);
+
+                    m.setdataHora(t);
+                    m.setenviadaPor(userID);
+                    m.setConteudo(content);
+
+                    novoCanal->adicionarMensagem(m);
+
+                    cout << m.getdataHora() << endl; 
+                    cout << m.getenviadaPor() << endl;
+                    cout << m.getConteudo() << endl;
+
+                    currentLine += 3;
+                }
+
+
+                // currentLine += (3 * numberMessages);
+
+            } 
+            else if (channelType == "voz") {
+                CanalVoz* novoCanal = new CanalVoz(channelName);
+                novoServidor.adicionarCanal(novoCanal);
+
                 userID = stoi(lines.at(currentLine));
+
                 strcpy(dataBefore, (lines.at(currentLine + 1)).c_str()); 
                 strptime(dataBefore, "%d/%m/%Y - %H:%M", &tm);
                 strftime(bufferDataAfter, sizeof(bufferDataAfter), "%d/%m/%Y - %H:%M", &tm);
@@ -145,43 +178,13 @@ void Sistema::loadServers() {
                 m.setenviadaPor(userID);
                 m.setConteudo(content);
 
-                novoCanal->adicionarMensagem(m);
+                novoCanal->setultimaMensagem(m);
 
-                cout << m.getdataHora() << endl; 
-                cout << m.getenviadaPor() << endl;
-                cout << m.getConteudo() << endl;
+                cout << content << endl;
 
-                currentLine += 3;
+                currentLine += 2;
             }
-
-
-            // currentLine += (3 * numberMessages);
-
-        } 
-        else if (channelType == "voz") {
-            CanalVoz* novoCanal = new CanalVoz(channelName);
-            novoServidor.adicionarCanal(novoCanal);
-
-            userID = stoi(lines.at(currentLine));
-
-            strcpy(dataBefore, (lines.at(currentLine + 1)).c_str()); 
-            strptime(dataBefore, "%d/%m/%Y - %H:%M", &tm);
-            strftime(bufferDataAfter, sizeof(bufferDataAfter), "%d/%m/%Y - %H:%M", &tm);
-            time_t t = mktime(&tm);
-
-            content = lines.at(currentLine + 2);
-
-            m.setdataHora(t);
-            m.setenviadaPor(userID);
-            m.setConteudo(content);
-
-            novoCanal->setultimaMensagem(m);
-
-            cout << content << endl;
-
-            currentLine += 2;
         }
-
     }
 
 
