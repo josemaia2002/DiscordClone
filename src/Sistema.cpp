@@ -17,6 +17,8 @@ Sistema::Sistema() {
 void Sistema::start() {
     cout << "Concord Servers Management" << endl;
 
+    load();
+
     while(true) 
         if(!readInput())
             break;
@@ -182,10 +184,11 @@ void Sistema::load() {
     loadServers();
 }
 
+
 void Sistema::saveUsers() {
     fstream arquivo;
     
-    arquivo.open("../data/users.txt", ios::app);
+    arquivo.open("../data/users.txt", ios::out);
     arquivo << usuarios.size() << endl;
 
     for(auto& usuario : usuarios) {
@@ -201,7 +204,7 @@ void Sistema::saveUsers() {
 void Sistema::saveServers() {
     fstream arquivo;
     
-    arquivo.open("../data/servers.txt", ios::app);
+    arquivo.open("../data/servers.txt", ios::out);
     arquivo << servidores.size() << endl;
 
     for(auto& servidor : servidores) {

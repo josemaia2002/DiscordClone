@@ -7,13 +7,11 @@
 
 using namespace std;
 
+
 int main(int argc, char *argv[]){
     Sistema app;
-    app.load(); 
     app.start();
     app.save();
-
-    
 
     return 0;
 }

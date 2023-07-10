@@ -1,39 +1,45 @@
-2
+3
 1
 rpg
 Servidor para discutar e jogar rpg.
 Mellon
-1
-1
+0
 2
 DarkSun
 voz
 1
 1
-07/07/2023 - 17:55
+31/12/1969 - 20:59
 Aventuras no deserto
 Mystara
 texto
 3
 1
-07/07/2023 - 17:54
+31/12/1969 - 20:59
 Bora jogar
 1
-07/07/2023 - 17:54
+14/08/1911 - 12:04
 Eu estou com uma aventura nova
 1
-07/07/2023 - 17:54
+31/12/1969 - 20:59
 Vai ser foda
 2
 Barbie
 Fan club da Barbie
 fica ligado
-1
-2
+0
 1
 Plastic
 texto
 1
 2
-07/07/2023 - 17:58
+30/05/1918 - 21:46
 Its fantastic
+5
+Engenharia
+ervidor para alunos de engenharia
+integral
+2
+5
+3
+0
