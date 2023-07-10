@@ -76,25 +76,36 @@ void Sistema::loadServers() {
     int currentLine = 0;
 
     int numberServers = stoi(lines.at(currentLine));
+    currentLine++;
 
     // TODO Implementar loop de servidores.
 
 
-    for(int serverLoop = 1; serverLoop < numberServers; serverLoop++) {
+    for(int serverLoop = 0; serverLoop < numberServers; serverLoop++) {
         cout << currentLine << endl;
-        
-        ownerID = stoi(lines.at(currentLine + 1));
-        serverName = lines.at(currentLine + 2);
-        serverDesc = lines.at(currentLine + 3);
-        serverCode = lines.at(currentLine + 4);
-        numberUsers = stoi(lines.at(currentLine + 5));
+
+        ownerID = stoi(lines.at(currentLine));
+        serverName = lines.at(currentLine + 1);
+        serverDesc = lines.at(currentLine + 2);
+        serverCode = lines.at(currentLine + 3);
+        numberUsers = stoi(lines.at(currentLine + 4));
+
+        currentLine += 5;
+
+        cout << "Owner id: " << ownerID << endl;
+        cout << "Server name " << serverName << endl;
+        cout << "Server description: " << serverDesc << endl;
+        cout << "Server invitation code: " << serverCode << endl;
+        cout << "Number of users: " << numberUsers << endl;
 
         int memberID;
 
         Servidor novoServidor(ownerID, serverName, serverDesc, serverCode);
         servidores.push_back(novoServidor);
 
-        for(currentLine = 6; currentLine < 6 + numberUsers; currentLine++){
+        cout << "Current Line: " << currentLine << endl;
+
+        for(int loop = currentLine; currentLine < loop + numberUsers; currentLine++){
             memberID = stoi(lines.at(currentLine));
             novoServidor.adicionarParticipante(memberID);
         }
@@ -193,8 +204,6 @@ void Sistema::loadServers() {
 
 
 /*
-
-
     cout << "Number of servers " << numberServers << endl;
     cout << "Owner id: " << ownerID << endl;
     cout << "Server name " << serverName << endl;
@@ -213,8 +222,6 @@ void Sistema::loadServers() {
     cout << "Number of messages: " << numberMessages << endl;
 
     cout << "User id: " << userID << endl;
-
-    
 */
 
 }
