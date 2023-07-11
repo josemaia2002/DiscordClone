@@ -53,10 +53,6 @@ void Sistema::loadUsers() {
         Usuario novoUsuario(id, nome, email, senha);
         usuarios.push_back(novoUsuario);
 
-        cout << novoUsuario.getId() << endl; 
-        cout << novoUsuario.getNome() << endl; 
-        cout << novoUsuario.getEmail() << endl; 
-        cout << novoUsuario.getSenha() << endl; 
     }
 }
 
