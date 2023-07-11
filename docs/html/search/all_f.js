@@ -5,7 +5,7 @@ var searchData=
   ['saveusers_2',['saveUsers',['../classSistema.html#ad809faf8bb5c9c379cc21735dfa4b848',1,'Sistema']]],
   ['sendmessage_3',['sendMessage',['../classSistema.html#a8f31ee8bbb5cc0881007bda0c6c5b1bb',1,'Sistema']]],
   ['senha_4',['senha',['../classUsuario.html#a99d6b6876b9118121cb9171dde26cc44',1,'Usuario']]],
-  ['servidor_5',['Servidor',['../classServidor.html',1,'Servidor'],['../classServidor.html#a17735c4ea252ac1fde55304cdfdf8834',1,'Servidor::Servidor(int usuarioDonoId, const std::string &amp;nome, const std::string &amp;descricao, const std::string &amp;codigoConvite)'],['../classServidor.html#a6be6f59fd470098d8d79bfa22c378b81',1,'Servidor::Servidor()']]],
+  ['servidor_5',['Servidor',['../classServidor.html',1,'Servidor'],['../classServidor.html#a9e954757cc703bbcc0575fa08a1e6334',1,'Servidor::Servidor(int usuarioDonoId, const string &amp;nome, const string &amp;descricao, const string &amp;codigoConvite)'],['../classServidor.html#a6be6f59fd470098d8d79bfa22c378b81',1,'Servidor::Servidor()']]],
   ['servidor_2ecpp_6',['Servidor.cpp',['../Servidor_8cpp.html',1,'']]],
   ['servidor_2ecpp_2eo_2ed_7',['Servidor.cpp.o.d',['../Servidor_8cpp_8o_8d.html',1,'']]],
   ['servidor_2eh_8',['Servidor.h',['../Servidor_8h.html',1,'']]],

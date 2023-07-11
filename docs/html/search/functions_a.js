@@ -4,7 +4,7 @@ var searchData=
   ['saveservers_1',['saveServers',['../classSistema.html#a4b065ebcf6d3ee9ea1d60558db0c3a8d',1,'Sistema']]],
   ['saveusers_2',['saveUsers',['../classSistema.html#ad809faf8bb5c9c379cc21735dfa4b848',1,'Sistema']]],
   ['sendmessage_3',['sendMessage',['../classSistema.html#a8f31ee8bbb5cc0881007bda0c6c5b1bb',1,'Sistema']]],
-  ['servidor_4',['Servidor',['../classServidor.html#a6be6f59fd470098d8d79bfa22c378b81',1,'Servidor::Servidor()'],['../classServidor.html#a17735c4ea252ac1fde55304cdfdf8834',1,'Servidor::Servidor(int usuarioDonoId, const std::string &amp;nome, const std::string &amp;descricao, const std::string &amp;codigoConvite)']]],
+  ['servidor_4',['Servidor',['../classServidor.html#a6be6f59fd470098d8d79bfa22c378b81',1,'Servidor::Servidor()'],['../classServidor.html#a9e954757cc703bbcc0575fa08a1e6334',1,'Servidor::Servidor(int usuarioDonoId, const string &amp;nome, const string &amp;descricao, const string &amp;codigoConvite)']]],
   ['setcodigoconvite_5',['setcodigoConvite',['../classServidor.html#aa68ac5da0da652d22ad7cbe9e440dd12',1,'Servidor']]],
   ['setconteudo_6',['setConteudo',['../classMensagem.html#a0879d8a79f00921b18b8692ef87789eb',1,'Mensagem']]],
   ['setdatahora_7',['setdataHora',['../classMensagem.html#a4ba3637c61565c62e636f9ee57ae1f5b',1,'Mensagem']]],
