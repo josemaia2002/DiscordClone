@@ -47,7 +47,7 @@ else
 	echo -ne '##########################[100%]\r'
 	echo -ne '\n'
 
-	echo "Concordo1.0 installed"
+	echo "DiscordCLone3.1 installed"
 fi
 
 

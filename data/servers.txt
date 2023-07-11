@@ -13,13 +13,13 @@ DarkSun
 voz
 1
 1
-15/12/1958 - 13:38
+18/05/1908 - 05:32
 Aventuras no deserto
 Mystara
 texto
 3
 1
-15/12/1958 - 16:38
+18/05/1908 - 09:32
 Bora jogar
 1
 15/07/1981 - 18:01
@@ -37,7 +37,7 @@ Plastic
 texto
 1
 2
-11/05/2015 - 19:24
+12/10/1964 - 12:05
 Its fantastic
 5
 Engenharia
