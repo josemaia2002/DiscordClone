@@ -22,8 +22,6 @@ void Sistema::start() {
     while(true) 
         if(!readInput())
             break;
-
-    save();
 }
 
 void Sistema::loadUsers() {
@@ -238,10 +236,10 @@ void Sistema::saveServers() {
                     arquivo << mensagem.getenviadaPor() << endl;
 
                     time_t dataHora = mensagem.getdataHora();
-                    char bufferDataHora[20];
-                    strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&dataHora));
+                    char bufTime[20];
+                    strftime(bufTime, sizeof(bufTime), "%d/%m/%Y - %H:%M", localtime(&dataHora));
 
-                    arquivo << bufferDataHora << endl;
+                    arquivo << bufTime << endl;
                     arquivo << mensagem.getConteudo() << endl;
                 }
             }
@@ -253,11 +251,11 @@ void Sistema::saveServers() {
                 Mensagem voiceMessage = canalVoz->getultimaMensagem();
                 string nome = getNomeUsuario(voiceMessage.getenviadaPor()); 
                 time_t data = voiceMessage.getdataHora();
-                char bufferDataHora[20];
-                strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&data));
+                char bufTime[20];
+                strftime(bufTime, sizeof(bufTime), "%d/%m/%Y - %H:%M", localtime(&data));
 
                 arquivo << voiceMessage.getenviadaPor() << endl;
-                arquivo << bufferDataHora << endl;
+                arquivo << bufTime << endl;
                 arquivo << voiceMessage.getConteudo() << endl;
             }
         }
@@ -295,8 +293,10 @@ bool Sistema::readInput() {
         getline(iss, email, ' ');
         getline(iss, senha, ' ');
         getline(iss, nome, ' ');
-        createUser(email, senha, nome);
+        createUser(email, senha, nome);        
         getline(iss, email, ' ');
+
+        save();
     }
     else if(command == "login") {
         string email;
@@ -318,6 +318,8 @@ bool Sistema::readInput() {
         getline(iss, serverName, ' ');
         createServer(serverName);
         getline(iss, serverName, ' ');
+
+        save();
     }
     else if(command == "set-server-desc"){
         string serverName;
@@ -328,7 +330,9 @@ bool Sistema::readInput() {
         iss.ignore();
         getline(iss, description, '"');
         changeServerDesc(serverName, description);
-        getline(iss, serverName, ' ');        
+        getline(iss, serverName, ' ');    
+
+        save();    
     }
     else if(command == "set-server-invite-code") {
         string serverName;
@@ -339,6 +343,8 @@ bool Sistema::readInput() {
         getline(iss, inviteCode, ' ');
         changeServerCode(serverName, inviteCode);
         getline(iss, serverName, ' ');
+
+        save();
     }
     else if(command == "list-servers") {
         listServers();
@@ -350,6 +356,8 @@ bool Sistema::readInput() {
         getline(iss, serverName, ' ');
         removeServer(serverName);
         getline(iss, serverName, ' ');
+
+        save();
     }
     else if(command == "enter-server") {
         string serverName;
@@ -360,9 +368,13 @@ bool Sistema::readInput() {
         getline(iss, inviteCode, ' ');
         enterServer(serverName, inviteCode);
         getline(iss, serverName, ' ');
+
+        save();
     }
     else if(command == "leave-server") {
         leaveServer();
+
+        save();
     }
     else if(command == "list-participants") {
         listMembers();
@@ -378,6 +390,8 @@ bool Sistema::readInput() {
         getline(iss, channelName, ' ');
         getline(iss, channelType, ' ');
         createChannel(channelName, channelType);
+
+        save();
     }
     else if(command == "enter-channel") {
         string ChanelName;
@@ -385,9 +399,13 @@ bool Sistema::readInput() {
         istringstream iss(args);
         getline(iss, ChanelName, ' ');
         enterChannel(ChanelName);
+
+        save();
     }
     else if(command == "leave-channel") {
         leaveChannel();
+
+        save();
     }
     else if (command == "send-message") {
         string mensagem;
@@ -395,6 +413,8 @@ bool Sistema::readInput() {
         istringstream iss(args);
         getline(iss, mensagem);
         sendMessage(mensagem);
+
+        save();
     }
     else if (command == "list-messages") {
         listMessages();
@@ -481,8 +501,8 @@ void Sistema::createServer(const string& nome) {
         return;
     }
 
-    for(auto& servidor : servidores) {
-        if(servidor.getNome() == nome) {
+    for(auto& server : servidores) {
+        if(server.getNome() == nome) {
             cout << "Error - Already existing server." << endl;
             return;
         }
@@ -520,10 +540,10 @@ void Sistema::changeServerCode(const string& nome, const string& codigoConvite) 
         return;
     }
 
-    for(auto& servidor : servidores) {
-        if(servidor.getNome() == nome) {
-            if(servidor.getusuarioDonoId() == usuarioLogado->getId()) {
-                servidor.setcodigoConvite(codigoConvite);
+    for(auto& server : servidores) {
+        if(server.getNome() == nome) {
+            if(server.getusuarioDonoId() == usuarioLogado->getId()) {
+                server.setcodigoConvite(codigoConvite);
                 if(codigoConvite.empty()) {
                     cout << "Server invitation code '" << nome << "' removed!" << endl;
                 } else {
@@ -545,17 +565,17 @@ void Sistema::listServers() {
     }
 }
 
-void Sistema::removeServer(const string& nome) {
+void Sistema::removeServer(const string& name) {
     if(usuarioLogado == nullptr) {
         cout << "Error - Not logged." << endl;
         return;
     }
 
     for(auto current_server = servidores.begin(); current_server != servidores.end(); ++current_server) {
-        if(current_server->getNome() == nome) {
+        if(current_server->getNome() == name) {
             if(current_server->getusuarioDonoId() == usuarioLogado->getId()) {
                 servidores.erase(current_server);
-                cout << "Server '" << nome << "' removed" << endl;
+                cout << "Server '" << name << "' removed" << endl;
             } else {
                 cout << "Error - Not allowed." << endl;
             }
@@ -563,20 +583,20 @@ void Sistema::removeServer(const string& nome) {
         }
     }
 
-    cout << "Error - Server '" << nome << "' not found." << endl;
+    cout << "Error - Server '" << name << "' not found." << endl;
 }
 
-void Sistema::enterServer(const string& nome, const string& codigoConvite) {
+void Sistema::enterServer(const string& name, const string& code) {
     if(usuarioLogado == nullptr) {
         cout << "Error - Not logged." << endl;
         return;
     }
 
-    for(auto& servidor : servidores) {
-        if(servidor.getNome() == nome) {
-            if(servidor.getcodigoConvite().empty() || servidor.getusuarioDonoId() == usuarioLogado->getId() || servidor.getcodigoConvite() == codigoConvite) {
-                servidor.adicionarParticipante(usuarioLogado->getId());
-                servidorAtual = &servidor;
+    for(auto& server : servidores) {
+        if(server.getNome() == name) {
+            if(server.getcodigoConvite().empty() || server.getusuarioDonoId() == usuarioLogado->getId() || server.getcodigoConvite() == code) {
+                server.adicionarParticipante(usuarioLogado->getId());
+                servidorAtual = &server;
                 cout << "Entered server" << endl;
             } else {
                 cout << "Error - Invitation code required" << endl;
@@ -585,7 +605,7 @@ void Sistema::enterServer(const string& nome, const string& codigoConvite) {
         }
     }
 
-    cout << "Error - Server '" << nome << "' not found." << endl;
+    cout << "Error - Server '" << name << "' not found." << endl;
 }
 
 void Sistema::leaveServer() {
@@ -615,9 +635,9 @@ void Sistema::listMembers() {
     }
 
     for(int id : servidorAtual->getparticipantesIDs()) {
-        for(auto& usuario : usuarios) {
-            if(usuario.getId() == id) {
-                cout << usuario.getNome() << endl;
+        for(auto& user : usuarios) {
+            if(user.getId() == id) {
+                cout << user.getNome() << endl;
                 break;
             }
         }
@@ -636,21 +656,21 @@ void Sistema::listChannels() {
     }
 
     cout << "Voice channels" << endl;
-    for(const auto& canal : servidorAtual->getCanais()) {
-        if(dynamic_cast<const CanalVoz*>(canal) != nullptr) {
-            cout << canal->getNome() << endl;
+    for(const auto& channel : servidorAtual->getCanais()) {
+        if(dynamic_cast<const CanalVoz*>(channel) != nullptr) {
+            cout << channel->getNome() << endl;
         }
     }
 
     cout << "Text channels" << endl;
-    for(const auto& canal : servidorAtual->getCanais()) {
-        if(dynamic_cast<const CanalTexto*>(canal) != nullptr) {
-            cout << canal->getNome() << endl;
+    for(const auto& channel : servidorAtual->getCanais()) {
+        if(dynamic_cast<const CanalTexto*>(channel) != nullptr) {
+            cout << channel->getNome() << endl;
         }
     }
 }
 
-void Sistema::createChannel(const string& nome, const string& tipo) {
+void Sistema::createChannel(const string& name, const string& type) {
     if(usuarioLogado == nullptr) {
         cout << "Error - Not logged." << endl;
         return;
@@ -661,27 +681,27 @@ void Sistema::createChannel(const string& nome, const string& tipo) {
         return;
     }
 
-    for(const auto& canal : servidorAtual->getCanais()) {
-        if(canal->getNome() == nome && ((tipo == "texto" && dynamic_cast<const CanalTexto*>(canal) != nullptr) || (tipo == "voz" && dynamic_cast<const CanalVoz*>(canal) != nullptr))) {
-            cout << "Error: Channel of type " << tipo << " '" << nome << "' already exists!" << endl;
+    for(const auto& channel : servidorAtual->getCanais()) {
+        if(channel->getNome() == name && ((type == "texto" && dynamic_cast<const CanalTexto*>(channel) != nullptr) || (type == "voz" && dynamic_cast<const CanalVoz*>(channel) != nullptr))) {
+            cout << "Error: Channel of type " << type << " '" << name << "' already exists!" << endl;
             return;
         }
     }
 
-    if(tipo == "texto") {
-        CanalTexto* novoCanal = new CanalTexto(nome);
+    if(type == "texto") {
+        CanalTexto* novoCanal = new CanalTexto(name);
         servidorAtual->adicionarCanal(novoCanal);
-        cout << "Channel of type texto '" << nome << "' created" << endl;
-    } else if (tipo == "voz") {
-        CanalVoz* novoCanal = new CanalVoz(nome);
+        cout << "Channel of type texto '" << name << "' created" << endl;
+    } else if (type == "voz") {
+        CanalVoz* novoCanal = new CanalVoz(name);
         servidorAtual->adicionarCanal(novoCanal);
-        cout << "Channel of type voz '" << nome << "' created" << endl;
+        cout << "Channel of type voz '" << name << "' created" << endl;
     } else {
         cout << "Error - Invalid channel type." << endl;
     }
 }
 
-void Sistema::enterChannel(const string& nome) {
+void Sistema::enterChannel(const string& name) {
     if(usuarioLogado == nullptr) {
         cout << "Error - Not logged." << endl;
         return;
@@ -692,15 +712,15 @@ void Sistema::enterChannel(const string& nome) {
         return;
     }
 
-    for(auto& canal : servidorAtual->getCanais()) {
-        if(canal->getNome() == nome) {
-            canalAtual = canal;
-            cout << "Entered channel '" << nome << "'" << endl;
+    for(auto& channel : servidorAtual->getCanais()) {
+        if(channel->getNome() == name) {
+            canalAtual = channel;
+            cout << "Entered channel '" << name << "'" << endl;
             return;
         }
     }
 
-    cout << "Error - Channel '" << nome << "' does not exist." << endl;
+    cout << "Error - Channel '" << name << "' does not exist." << endl;
 }
 
 void Sistema::leaveChannel() {
@@ -723,7 +743,7 @@ void Sistema::leaveChannel() {
     canalAtual = nullptr;
 }
 
-void Sistema::sendMessage(const string& mensagem) {
+void Sistema::sendMessage(const string& message) {
     if(usuarioLogado == nullptr) {
         cout << "Error - Not logged." << endl;
         return;
@@ -739,20 +759,20 @@ void Sistema::sendMessage(const string& mensagem) {
         return;
     }
 
-    Mensagem novaMensagem;
-    novaMensagem.setConteudo(mensagem);
-    novaMensagem.setdataHora(time(nullptr));
-    novaMensagem.setenviadaPor(usuarioLogado->getId());
+    Mensagem newMessage;
+    newMessage.setConteudo(message);
+    newMessage.setdataHora(time(nullptr));
+    newMessage.setenviadaPor(usuarioLogado->getId());
 
     CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canalAtual);
     CanalVoz* canalVoz = dynamic_cast<CanalVoz*>(canalAtual);
 
     if(dynamic_cast<const CanalTexto*>(canalAtual) != nullptr) {
-        canalTexto->adicionarMensagem(novaMensagem);
+        canalTexto->adicionarMensagem(newMessage);
     }
 
     if(dynamic_cast<const CanalVoz*>(canalAtual) != nullptr) {
-        canalVoz->setultimaMensagem(novaMensagem);
+        canalVoz->setultimaMensagem(newMessage);
     }
 }
 
@@ -773,43 +793,43 @@ void Sistema::listMessages() {
         return;
     }
 
-    CanalTexto* canalTexto = dynamic_cast<CanalTexto*>(canalAtual);
-    CanalVoz* canalVoz = dynamic_cast<CanalVoz*>(canalAtual);
+    CanalTexto* txtChannel = dynamic_cast<CanalTexto*>(canalAtual);
+    CanalVoz* voiceChannel = dynamic_cast<CanalVoz*>(canalAtual);
 
     if(dynamic_cast<const CanalTexto*>(canalAtual) != nullptr) {
-        vector<Mensagem>& mensagens = canalTexto->getMensagens();
-        if(mensagens.empty()) {
+        vector<Mensagem>& messages = txtChannel->getMensagens();
+        if(messages.empty()) {
             cout << "Error - No messages found." << endl;
             return;
         }
 
-        for(Mensagem& mensagem : mensagens) {
-            string nomeUsuario = getNomeUsuario(mensagem.getenviadaPor());
+        for(Mensagem& message : messages) {
+            string userName = getNomeUsuario(message.getenviadaPor());
 
-            time_t dataHora = mensagem.getdataHora();
-            char bufferDataHora[20];
-            strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&dataHora));
+            time_t dateTime = message.getdataHora();
+            char bufTime[20];
+            strftime(bufTime, sizeof(bufTime), "%d/%m/%Y - %H:%M", localtime(&dateTime));
 
-            cout << nomeUsuario << "<" << bufferDataHora << ">: " << mensagem.getConteudo() << endl;
+            cout << userName << "<" << bufTime << ">: " << message.getConteudo() << endl;
         }
     }
 
     if(dynamic_cast<const CanalVoz*>(canalAtual) != nullptr) {
-        Mensagem voiceMessage = canalVoz->getultimaMensagem();
+        Mensagem voiceMessage = voiceChannel->getultimaMensagem();
 
-        string nome = getNomeUsuario(voiceMessage.getenviadaPor()); 
-        time_t data = voiceMessage.getdataHora();
-        char bufferDataHora[20];
-        strftime(bufferDataHora, sizeof(bufferDataHora), "%d/%m/%Y - %H:%M", localtime(&data));
+        string name = getNomeUsuario(voiceMessage.getenviadaPor()); 
+        time_t dateTime = voiceMessage.getdataHora();
+        char bufTime[20];
+        strftime(bufTime, sizeof(bufTime), "%d/%m/%Y - %H:%M", localtime(&dateTime));
 
-        cout << nome << "<" << bufferDataHora << ">: " << voiceMessage.getConteudo() << endl;
+        cout << name << "<" << bufTime << ">: " << voiceMessage.getConteudo() << endl;
     }
 }
 
 string Sistema::getNomeUsuario(int id) {
-    for(Usuario& usuario : usuarios)
-        if(usuario.getId() == id)
-            return usuario.getNome();
+    for(Usuario& user : usuarios)
+        if(user.getId() == id)
+            return user.getNome();
 
     return "";
 }

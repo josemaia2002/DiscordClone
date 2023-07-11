@@ -11,7 +11,12 @@ Servidor::Servidor() {
     this->codigoConvite = " ";
 }
 
-Servidor::Servidor(int usuarioDonoId, const std::string& nome, const std::string& descricao, const std::string& codigoConvite) : usuarioDonoId(usuarioDonoId), nome(nome), descricao(descricao), codigoConvite(codigoConvite) {}
+Servidor::Servidor(int usuarioDonoId, const string& nome, const string& descricao, const string& codigoConvite) {
+    this->usuarioDonoId = usuarioDonoId;
+    this->nome = nome;
+    this->descricao = descricao;
+    this->codigoConvite = codigoConvite;
+}
 
 void Servidor::adicionarParticipante(int id) {
     participantesIDs.push_back(id);

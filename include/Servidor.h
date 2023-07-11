@@ -82,7 +82,7 @@ public:
      * \param descricao A text describing the server.
      * \param codigoConvite A code required to enter the server.
      */
-    Servidor(int usuarioDonoId, const std::string& nome, const std::string& descricao, const std::string& codigoConvite); 
+    Servidor(int usuarioDonoId, const string& nome, const string& descricao, const string& codigoConvite); 
 
     /**
      * \brief Add a memeber to the server.
