@@ -20,7 +20,7 @@ else
 	touch run.sh
       	chmod +x run.sh
     	echo "#!/bin/bash" >> run.sh
-    	echo "cd build" >> run.sh
+    	echo "cd $DIR" >> run.sh
     	echo "./program" >> run.sh      
     	
     	echo "Finishing the installation"
@@ -49,3 +49,22 @@ else
 
 	echo "Concordo1.0 installed"
 fi
+
+
+DIR_ENTRY=~
+DIR_ROOT=`pwd`
+cd $DIR_ENTRY/.local/share/applications
+touch DiscordClone.desktop
+chmod +x DiscordClone.desktop
+echo "[Desktop Entry]" >> DiscordClone.desktop
+echo "Name=DiscordClone" >> DiscordClone.desktop
+echo "Type=Application" >> DiscordClone.desktop  
+echo "Terminal=true" >> DiscordClone.desktop
+echo "Exec=sh $DIR_ROOT/run.sh" >> DiscordClone.desktop  
+echo "Icon=$DIR_ROOT/data/img/pirate.svg" >> DiscordClone.desktop
+
+
+
+
+
+
